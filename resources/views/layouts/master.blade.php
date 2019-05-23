@@ -13,13 +13,21 @@
 </head>
 
 <body>
-    @include('layouts.menu-lateral')
+
+@component('layouts.menu-lateral')
+@endcomponent
+<main role="main">
+@hasSection('body')
+@yield('body')
+@endif   
     @yield('conteudo-view')
 
-
+</main>
    
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
-@yield('js-view')
+@hasSection("javascript")
+    @yield('javascript')
+@endif    
 </div>
 
 </body>
