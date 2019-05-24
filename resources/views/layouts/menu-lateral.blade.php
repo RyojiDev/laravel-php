@@ -9,7 +9,7 @@
 <div class = "container" id ="divmenu">
 <ul class="nav flex-column" >
     <li class="nav-item">
-        <a href="">    
+        <a href="/clientes">    
         <i class="fas fa-address-book"></i>
         <h4><p>Clientes</p></h4>
         <h6>Visualize, cadastre e edite os<br>clientes do sistema</h6>

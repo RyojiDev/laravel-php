@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('body')
 
+@section('body')
 
 <div id=content>
 <div id = "inner-content">
@@ -10,7 +10,7 @@
 <div class="form-group">
 
 
-@foreach ($escolas as $escolas)   
+  
  <table class="table shadow table-striped table-bordered table-hover">
     <thead>
         <tr>
@@ -22,18 +22,15 @@
     </tr>
     </thead>
     <tbody>
-       
+    @foreach ($escolas as $escolas)     
         <tr>
-        <td></td>
-        <td>{{$escolas->nome_fantasia}}</td>@endforeach
+        <td>{{ $escolas->id}}</td>
+        <td>{{ $escolas->nome_fantasia}} </td>
 
-        <td>
-        
-           
-        </td>
+        <td>{{ $escolas->razao_social}} @endforeach</td>
         
         </tr>
-      
+       
     </tbody>
     </table>
     <button type="button" class="floating-action-button shadow btn btn-primary">
@@ -46,28 +43,20 @@
 </div>
 </div>
 <div class="container">
+<div id="content">
+<body>
+<div class="container">
 <h1> Escolas </h1>
 
 
+
 <div class="panel panel-default">
-<div class="panel-header">
-<h1>{{$escolas->nome_fantasia}}</h1>
-
-</div>
-
-<div class="panel-body">
 
 
-{{ $escolas->razao_social }}
-{{$escolas->nome_fantasia}}
-{{$escolas->id}}
-<br>
-<a href="/Regressar"></a>
 </div>
 </div>
 </div>
-
 </div>
-</div>
-   @endsection
+ @endsection   
+</body>
 </html>

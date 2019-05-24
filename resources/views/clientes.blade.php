@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('body')
 
+@section('body')
 
 <div id=content>
 <div id = "inner-content">
@@ -10,7 +10,7 @@
 <div class="form-group">
 
 
-@foreach ($escolas as $escolas)   
+  
  <table class="table shadow table-striped table-bordered table-hover">
     <thead>
         <tr>
@@ -19,22 +19,23 @@
             <th>Nome Fantasia</th>
             <th>Data limite</th>
             
+
+
+
     </tr>
     </thead>
     <tbody>
-       
+    @foreach ($clientes as $clientes)     
         <tr>
-        <td></td>
-        <td>{{$escolas->nome_fantasia}}</td>@endforeach
-
-        <td>
-        
-           
-        </td>
+        <td>{{ $clientes->cnpj }}</td>
+        <td> {{$clientes->razao_social}}</td>
+        <td>{{$clientes->nome_fantasia}}</td>
+        <td>{{$clientes->data_limite}}</td>
         
         </tr>
-      
+       
     </tbody>
+    @endforeach
     </table>
     <button type="button" class="floating-action-button shadow btn btn-primary">
     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -46,28 +47,23 @@
 </div>
 </div>
 <div class="container">
-<h1> Escolas </h1>
+<div id="content">
+<body>
+
+
 
 
 <div class="panel panel-default">
-<div class="panel-header">
-<h1>{{$escolas->nome_fantasia}}</h1>
-
-</div>
-
-<div class="panel-body">
 
 
-{{ $escolas->razao_social }}
-{{$escolas->nome_fantasia}}
-{{$escolas->id}}
-<br>
-<a href="/Regressar"></a>
 </div>
 </div>
 </div>
-
 </div>
-</div>
-   @endsection
+ @endsection   
+</body>
 </html>
+
+
+
+

@@ -1,32 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use App\Repositories\Escolas;
+use App\Repositories\Clientes;
+use Illuminate\Http\Request;
 
-
-class EscolasController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     protected $escolas;
-     public function __construct(Escolas $escolas)
-     {
-         $this->escolas = $escolas;
-     }
+        protected $clientes;
+     public function __construct(Clientes $clientes)
+    {
+   $this->clientes = $clientes;
+    }
     public function index()
     {
-       
+        
+
+        $clientes = $this->clientes->all();   
     
-           $escolas = $this->escolas->all();
-            return view ('escola', compact('escolas'));
-    
+    return view ('clientes', compact('clientes'));
+
+
     }
 
     /**
@@ -58,9 +57,8 @@ class EscolasController extends Controller
      */
     public function show($id)
     {
-        
-        $escolas = $this->escolas->find($id);
-            return view ('show', compact('escolas'));
+        $clientes = $this->clientes->find($id);
+        return view ('clienteid', compact('clientes'));
     }
 
     /**

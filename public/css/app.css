@@ -10756,4 +10756,9 @@ a.text-dark:focus {
     right: 0;
 }
 
+#content #inner-content {
+  padding: 40px;
+  width: 100%;
+}
+
 

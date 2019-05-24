@@ -8,6 +8,7 @@
 <title>Gestor Escolar</title>
 @yield('head')
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
 @yield('css-view')
 
 </head>
