@@ -26,6 +26,7 @@
 </main>
    
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/date.js')}}" rel="text/javascript"></script>
 @hasSection("javascript")
     @yield('javascript')
 @endif    
