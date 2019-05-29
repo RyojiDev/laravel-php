@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use GuzzleHttp\Client;
+
 use App\Repositories\Clientes;
 use Illuminate\Http\Request;
 
@@ -12,19 +12,29 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        protected $clientes;
-     public function __construct(Clientes $clientes)
+    protected $clientes;
+    public function __construct(Clientes $clientes)
     {
-   $this->clientes = $clientes;
+        $this->clientes = $clientes;
+    }
+
+    public function indexView()
+    {
+
+        $clientes = $this->clientes->all();
+
+        return view('clientes.clientes', compact('clientes'));
+
     }
     public function index()
     {
-        
 
-        $clientes = $this->clientes->all();   
-    
-    return view ('clientes', compact('clientes'));
+        //$clientes = $this->clientes->all();
 
+        //return json_encode($clientes);
+
+        $clientes = $this->clientes->all();
+        return json_encode($clientes);
 
     }
 
@@ -46,7 +56,13 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clientes = new Clientes();
+        $clientes->cnpj = $request->input('cnpjCliente');
+        $clientes->razao_social = $request->input('razaoSocial');
+        $clientes->nome_fantasia =$request->input('nomeFantasia');
+        $clientes->data_limite =$request->input('dataLimite'); 
+        $clientes->save();
+        return json_encode($clientes);
     }
 
     /**
@@ -58,7 +74,7 @@ class ClientesController extends Controller
     public function show($id)
     {
         $clientes = $this->clientes->find($id);
-        return view ('clienteid', compact('clientes'));
+        return view('clienteid', compact('clientes'));
     }
 
     /**
@@ -93,5 +109,15 @@ class ClientesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function indexJson()
+    {
+
+        $clientes = $this->clientes->all();
+
+        $clientes = json_encode($clientes);
+        return $clientes;
+
     }
 }

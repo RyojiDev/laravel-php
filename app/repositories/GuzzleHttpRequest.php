@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Repositories;
+
 use GuzzleHttp\Client;
 
-Class GuzzleHttpRequest{
+class GuzzleHttpRequest
+{
     protected $client;
 
     public function __construct(Client $client)
@@ -12,10 +14,15 @@ Class GuzzleHttpRequest{
     }
 
     protected function get($url)
-{
-    $response = $this->client->request('GET',$url);
-    
-    return json_decode($response->getBody()->getContents());
-}
+    {
+        $response = $this->client->request('GET', $url);
 
+        return json_decode($response->getBody()->getContents());
+
+        $request = $this->client->request('POST', $url);
+
+        return json_decode($request->getBody()->getContents());
+    }
+
+    
 }

@@ -10761,36 +10761,36 @@ a.text-dark:focus {
   width: 100%;
 }
 
-#minhaTabela{
+#tabelaClientes{
   border:0;
   box-shadow: 0 5px 30px darkgrey;
   border-spacing: 0;
 }
 
 
-#minhaTabela tr td{
+#tabelaClientes tr td{
   padding:5px 10px;
   text-align: center;
   
   cursor: pointer; /**importante para não mostrar cursor de texto**/
 }
 
-#minhaTabela tr td:last-child{
+#tabelaClientes tr td:last-child{
   text-align: right;
 }
 
 /**Cores**/
-#minhaTabela tr:nth-child(odd){
+#tabelaClientes tr:nth-child(odd){
   background-color: #eee;
 }
 
 /**Cor quando passar por cima**/
-#minhaTabela tr:hover td{
+#tabelaClientes tr:hover td{
   background-color: #6e6e5e;
 }
 
 /**Cor quando selecionado**/
-#minhaTabela tr.selecionado td{
+#tabelaClientes tr.selecionado td{
   background-color: #aff7ff;
 }
 
@@ -10802,3 +10802,4 @@ button#visualizarDados{
   padding:10px 0;
   display: block;
   color: black;
+}
