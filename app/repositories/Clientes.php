@@ -2,36 +2,52 @@
 namespace App\Repositories;
 use GuzzleHttp\Exception\Exception\RequestException;
 use  GuzzleHttp \ Psr7 \Response;
-
 use GuzzleHttp\Client;
 
-// class Clientes extends GuzzleHttpRequest{
+ class Clientes extends GuzzleHttpRequest{
 
-//     public function all(){
+     public function all(){
         
         return $this->get('clientes');
         $clientes = $clientes->tojSon();
         return view ('clientes' , compact ('clientes'));
 
         
-//     }
+  }
 
-    public function postCliente()
-    
+    public function postCliente() 
     {
         
-        $client = new \GuzzleHttp\Client(["base_uri" => "http://localhost:8080/gestor_api"]);
+        $client = new \GuzzleHttp\Client(["base_uri" => "http://172.16.0.198:8080/gestor_api/cliente"]);
+        // $options = [
+        //     'json' => [
+        // $client->cnpj = $request->input('cnpjCliente');
+        // $client->razao_social = $request->input('razaoSocial');
+        // $client->nome_fantasia = $request->input('nomeFantasia');
+        // $client->data_limite = $request->input('dataLimite');
+        // $client->save();
+        // $request = $client->post("cliente");
+        // $clientes = $this->clientes->postCliente();
+        // return json_encode($client);
+        // ]
+
+        // ];
+
+        
         $options = [
             'json' => [
-                "cnpj" => "84556852",
-                "razao_social" => "deu certo",
-                "nome_fantasia" => "kkkkk finalmente",
-                "data_limite" => "2019-06-01"
+             $response->cnpj->input('cnpjLimite'),
+             $response->razao_social->input('razaoSocial'),
+            $response->nome_fantasia->input('nomeFantasia'),
+            $response->data_limite->input('dataLimite')
                ]
            ]; 
-        $response = $client->post("/cliente", $options);
+
+           
+           
+       $response = $client->post("cliente", $options);
         
-        echo $response->getBody();
+       echo $response->getBody();
          
            //$response = $client->post("/cliente", $options)->getbody();
         
@@ -60,4 +76,4 @@ use GuzzleHttp\Client;
     
 // }
 
-// } -->
+ }

@@ -8,9 +8,9 @@ use GuzzleHttp\Client;
 
 Route::get('/principal', 'PrincipalControlador@principal');
 
-//Route::get('/clientes' , 'ClientesController@indexView');
+Route::get('/clientes' , 'ClientesController@indexView');
 
-Route::get('/clientes/{id}' , 'ClientesController@show');
+//Route::get('/clientes/{id}' , 'ClientesController@show');
 
 
 

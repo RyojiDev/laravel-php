@@ -14,14 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->singleton('GuzzleHttp\Client', function(){
+         $this->app->singleton('GuzzleHttp\Client', function(){
 
-        //         return new Client([
-        //             'base_uri' => 'http://172.16.0.198:8080/gestor_api/',
+                 return new Client([
+                  'base_uri' => 'http://172.16.0.198:8080/gestor_api/',
                 
-        //             'timeout' => 2.0,
-        //            ]);
-        // });
+                    'timeout' => 2.0,
+               ]);
+         });
     }
 
     /**

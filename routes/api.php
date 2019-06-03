@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::get('/clientes','ClientesController@indexJson');
 
 
-Route::post('/clientes', 'ClientesController@store');
+Route::resource('clientes', 'ClientesController');
 
 
 //Route::resource('/clientes/{id}', 'ClientesController');

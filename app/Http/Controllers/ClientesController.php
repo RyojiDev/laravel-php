@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Clientes;
+use GuzzleHttp\Client;
 
 class ClientesController extends Controller
 {
@@ -11,11 +12,11 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //protected $clientes;
-    //public function __construct(Clientes $clientes)
-   // 
-       // $this->clientes = $clientes;
-   // }
+    protected $clientes;
+    public function __construct(Clientes $clientes){
+   
+        $this->clientes = $clientes;
+    }
 
     public function indexView()
     {
@@ -28,9 +29,9 @@ class ClientesController extends Controller
     public function index()
     {
 
-        //$clientes = $this->clientes->all();
+        $clientes = $this->clientes->all();
 
-        //return json_encode($clientes);
+        return json_encode($clientes);
 
         //$clientes = $this->clientes->all();
         
@@ -56,16 +57,17 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {   
+        
         $clientes = $this->clientes->postCliente();
     }
 
-        $response = $client->post('/cliente', $headers, json_encode($cliente));
+        //$response = $client->post('/cliente', $headers, json_encode($cliente));
         //    echo json_encode($cliente);
        // $response = $client->post("/cliente", $options);
 
 
-        echo $response->getBody();
-        }
+       // echo $response->getBody();
+        
 
     /**
      * Display the specified resource.
@@ -116,3 +118,4 @@ class ClientesController extends Controller
 
     
 }
+

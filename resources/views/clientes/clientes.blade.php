@@ -152,8 +152,32 @@ function carregarClientes(){
          $('#tabelaClientes>tbody').append(linha);
 
         }
-    });
+        $("#formCliente").submit(function(event){   
+ event.preventDefault();
+ criarCliente();
+ $("#dlgCliente").modal('hide');
+    })
+});
 }
+
+
+
+function criarCliente(){
+    client = 
+            { cnpj: $("#cnpjCliente").val(),
+             razao_social: $("#razaoSocial").val(),
+             nome_fantasia: $("#nomeFantasia").val(),
+             data_limite: $("#dataLimite").val()
+            
+};
+console.log(client);
+}
+
+//  criarCliente();
+//  $("#dlgClientes").modal('hide');
+
+//  } )
+
 
 $(function(){
     carregarClientes();
