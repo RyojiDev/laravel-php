@@ -5,16 +5,16 @@ use  GuzzleHttp \ Psr7 \Response;
 
 use GuzzleHttp\Client;
 
-class Clientes extends GuzzleHttpRequest{
+// class Clientes extends GuzzleHttpRequest{
 
-    public function all(){
+//     public function all(){
         
         return $this->get('clientes');
         $clientes = $clientes->tojSon();
         return view ('clientes' , compact ('clientes'));
 
         
-    }
+//     }
 
     public function postCliente()
     
@@ -56,4 +56,8 @@ class Clientes extends GuzzleHttpRequest{
         return $this->get("clientes/{$id}");
     }
 
-}
+   
+    
+// }
+
+// } -->

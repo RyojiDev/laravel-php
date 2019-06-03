@@ -19,9 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/clientes','ClientesController@indexJson');
+//Route::get('/clientes','ClientesController@indexJson');
 
-Route::resource('/clientes', 'ClientesController');
+
+Route::post('/clientes', 'ClientesController@store');
+
 
 //Route::resource('/clientes/{id}', 'ClientesController');
 

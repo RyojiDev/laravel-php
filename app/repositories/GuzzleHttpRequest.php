@@ -1,4 +1,4 @@
-<?php
+<!-- /?php
 
 namespace App\Repositories;
 use  GuzzleHttp \ Psr7 \ Request ;
@@ -10,16 +10,16 @@ class GuzzleHttpRequest
 {
     protected $client;
 
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
+//     public function __construct(Client $client)
+//     {
+//         $this->client = $client;
+//     }
 
-    protected function get($url)
-    {
-        $response = $this->client->request('GET', $url);
+//     protected function get($url)
+//     {
+//         $response = $this->client->request('GET', $url);
 
-        return json_decode($response->getBody()->getContents());
+//         return json_decode($response->getBody()->getContents());
 
         
     }

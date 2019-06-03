@@ -11,11 +11,11 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $clientes;
-    public function __construct(Clientes $clientes)
-    {
-        $this->clientes = $clientes;
-    }
+    //protected $clientes;
+    //public function __construct(Clientes $clientes)
+   // 
+       // $this->clientes = $clientes;
+   // }
 
     public function indexView()
     {
@@ -32,8 +32,9 @@ class ClientesController extends Controller
 
         //return json_encode($clientes);
 
-        $clientes = $this->clientes->all();
-        return json_encode($clientes);
+        //$clientes = $this->clientes->all();
+        
+        //return json_encode($clientes);
 
     }
 
@@ -58,16 +59,25 @@ class ClientesController extends Controller
         $clientes = $this->clientes->postCliente();
     }
 
+        $response = $client->post('/cliente', $headers, json_encode($cliente));
+        //    echo json_encode($cliente);
+       // $response = $client->post("/cliente", $options);
+
+
+        echo $response->getBody();
+        }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    
+     public function show($id)
     {
-        $clientes = $this->clientes->find($id);
-        return view('clienteid', compact('clientes'));
+        //$clientes = $this->clientes->find($id);
+        //return view('clienteid', compact('clientes'));
     }
 
     /**
@@ -104,13 +114,5 @@ class ClientesController extends Controller
         //
     }
 
-    public function indexJson()
-    {
-
-        $clientes = $this->clientes->all();
-
-        $clientes = json_encode($clientes);
-        return $clientes;
-
-    }
+    
 }
