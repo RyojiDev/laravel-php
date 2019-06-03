@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Repositories;
-
+use  GuzzleHttp \ Psr7 \ Request ;
 use GuzzleHttp\Client;
+
+
 
 class GuzzleHttpRequest
 {
@@ -19,10 +21,18 @@ class GuzzleHttpRequest
 
         return json_decode($response->getBody()->getContents());
 
-        $request = $this->client->request('POST', $url);
+        
+    }
+       
+    
+    public function post($url){
+        
 
-        return json_decode($request->getBody()->getContents());
+        $response = $this->client->request('POST', $url);
+
+        return json_decode($response->getBody()->getContents());
     }
 
-    
 }
+
+

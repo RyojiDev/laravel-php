@@ -24,3 +24,4 @@ Route::get('/clientes','ClientesController@indexJson');
 Route::resource('/clientes', 'ClientesController');
 
 //Route::resource('/clientes/{id}', 'ClientesController');
+

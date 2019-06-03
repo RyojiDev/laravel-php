@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Repositories\Clientes;
 use Illuminate\Http\Request;
+use App\Repositories\Clientes;
 
 class ClientesController extends Controller
 {
@@ -55,14 +54,8 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $clientes = new Clientes();
-        $clientes->cnpj = $request->input('cnpjCliente');
-        $clientes->razao_social = $request->input('razaoSocial');
-        $clientes->nome_fantasia =$request->input('nomeFantasia');
-        $clientes->data_limite =$request->input('dataLimite'); 
-        $clientes->save();
-        return json_encode($clientes);
+    {   
+        $clientes = $this->clientes->postCliente();
     }
 
     /**
