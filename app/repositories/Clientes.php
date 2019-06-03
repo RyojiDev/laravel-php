@@ -16,7 +16,10 @@ use GuzzleHttp\Client;
   }
 
     public function postCliente() 
-    {
+
+
+    { 
+        # Home local  //$client = new \GuzzleHttp\Client(["base_uri" => "http://localhost:8080/gestor_api/cliente"]);
         
         $client = new \GuzzleHttp\Client(["base_uri" => "http://172.16.0.198:8080/gestor_api/cliente"]);
         // $options = [
