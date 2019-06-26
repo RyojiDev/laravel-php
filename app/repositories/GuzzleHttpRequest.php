@@ -25,13 +25,13 @@ class GuzzleHttpRequest
     }
        
     
-    public function post($url){
+    // public function post($url){
         
 
-        $response = $this->client->request('POST', $url);
+    //     $response = $this->client->request('POST', $url);
 
-        return json_decode($response->getBody()->getContents());
-    }
+    //     return json_decode($response->getBody()->getContents());
+    // }
 
 }
 

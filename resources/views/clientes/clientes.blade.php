@@ -2,13 +2,19 @@
 
 @section('body')
 
+@include('layouts.menu-lateral')
 
-<div id=content>
+
+
+<div id="containerteste">
+<div id="content">
 <div id = "inner-content">
 <div class="clients-table-page inner-content">
 <div class="flex-space-between">
 <h4>Clientes</h4>
 <div class="form-group">
+
+
 
 <!--------------------------- Tabela de clientes - Retorno Da requisição GET da Api-------->
 
@@ -39,10 +45,12 @@
     </tbody>
     <!--@endforeach-->
     </table>
+<div>
 
+    <button id = "novoclientebotao"
+class= "btn btn-sm btn-primary" role="button">Novo Cliente</button>    <button type="button" class="floating-action-button shadow btn btn-primary">
 
-    <button
-class= "btn btn-sm btn-primary" role="button" onClick="novoCliente()">Novo Cliente</button>    <button type="button" class="floating-action-button shadow btn btn-primary">
+<a href="{{route('clientes.create')}}">Novo Cliente<span class="glyphicon glyphicon-plus"></span></a>
     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
     <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg></button>
 </div>
@@ -107,16 +115,25 @@ type="date" class="form-control" id="dataLimite"></div>
 </div>
 </div>
 </div>
+
+
 @endsection
 
  @section('javascript')
 
  <script type="text/javascript">
 
+$(document).ready(function(){
+
+
 $.ajaxSetup({
  headers:{
      'X-CSRF-TOKEN':"{{ csrf_token() }}"
  }
+});
+
+$('#novoclientebotao').click(function(){
+    novoCliente();
 });
 
 function novoCliente(){
@@ -132,11 +149,11 @@ function montarLinha(c){
             const date = new Date(t);
             console.log(date.toLocaleDateString());
             var linha = "<tr>" +
-            "<td>" + c.id + "</td>"+
-            "<td>" + c.cnpj + "</td>"+
-            "<td>" + c.razao_social + "</td>"+
-            "<td>" + c.nome_fantasia + "</td>"+
-            "<td>" + new Date(c.data_limite).toLocaleDateString();
+            "<td><a href='/clientes-detail/"+c.id.toString()+"'>"+ c.id +"</a></td>"+
+            "<td><a href='/clientes-detail/"+c.id.toString()+"'>"+ c.cnpj + "</td>"+
+            "<td><a href='/clientes-detail/"+c.id.toString()+"'>"+ c.razao_social + "</td>"+
+            "<td><a href='/clientes-detail/"+c.id.toString()+"'>"+ c.nome_fantasia + "</td>"+
+            "<td>"+ new Date(c.data_limite).toLocaleDateString();
  + "</td>"+
 
             "</td>"+
@@ -148,6 +165,7 @@ function montarLinha(c){
 function carregarClientes(){
     $.getJSON('/api/clientes', function(clientes) {
         for(var i=0;i<clientes.length;i++){
+            console.log(clientes[i])
          linha = montarLinha(clientes[i]);
          $('#tabelaClientes>tbody').append(linha);
 
@@ -155,7 +173,7 @@ function carregarClientes(){
         $("#formCliente").submit(function(event){   
  event.preventDefault();
  criarCliente();
- $("#dlgCliente").modal('hide');
+ $("#dlgClientes").modal('hide');
     })
 });
 }
@@ -165,25 +183,50 @@ function carregarClientes(){
 function criarCliente(){
     client = 
             { cnpj: $("#cnpjCliente").val(),
-             razao_social: $("#razaoSocial").val(),
-             nome_fantasia: $("#nomeFantasia").val(),
-             data_limite: $("#dataLimite").val()
+             razao_social : $("#razaoSocial").val(),
+             nome_fantasia : $("#nomeFantasia").val(),
+             data_limite : $("#dataLimite").val()
             
 };
-console.log(client);
+
+$.ajax({
+    url: "api/clientes",
+    data: $('#formCliente').serialize(),
+    type: "POST",
+    dataType: "json",
+    success: function(data){
+         $("#formCliente").val(function(){
+                linha = montarLinha(data);
+            $('#tabelaClientes>tbody').append(linha);
+        })
+               
+    },
+    error: function() {
+        console.log('Erro na requisição');
+
+    }
+            });
+
 }
 
-//  criarCliente();
-//  $("#dlgClientes").modal('hide');
-
-//  } )
+$(document).ready(function(){
+    $('#navmenu a').click(function(e){
+        
+        e.preventDefault();
+        $('#containerteste').empty();
+      var href = $(this).attr('href');
+        $("#containerteste").load( href + "#containerteste");
+        
+    });
+    });
 
 
 $(function(){
     carregarClientes();
-
+    
 })
 
+});
 </script>
 
 @endsection

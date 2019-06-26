@@ -18,6 +18,11 @@ class ClientesController extends Controller
         $this->clientes = $clientes;
     }
 
+    public function indexdetailCliente()
+    {
+        return view ('clientes.clientes-detail');
+    }
+
     public function indexView()
     {
 
@@ -46,7 +51,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+        return view ('clientes.clientes-novo');
     }
 
     /**
@@ -56,17 +61,39 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        
-        $clientes = $this->clientes->postCliente();
+    {
+    //     $dataForm = $request->except('_token');
+
+    //     $guzzle = new Client;
+      
+    //   $result =  $guzzle->POST(env('URL_API').'/cliente',[
+    //         'headers'=> ['Content-Type' => 'application/json'],
+            
+            
+    //         'json' => $dataForm,
+            
+
+    //     ]);
+    //     json_decode($result->getBody());
+
+    // $input = $request->all();
+
+    //     return response()->json(['success'=>'Got Simple Ajax Request.']);
+
+
+    $dataForm = $request->except('_token');
+
+    $guzzle = new Client;
+
+    $result = $guzzle->POST(env('URL_API').'/cliente',[
+        'headers'=> ['Content-Type' => 'application/json'],
+
+        'json' => $dataForm,
+    ]);
+    //dd(json_decode($result->getbody()));
+    return redirect()->action('ClientesController@indexView');
     }
-
-        //$response = $client->post('/cliente', $headers, json_encode($cliente));
-        //    echo json_encode($cliente);
-       // $response = $client->post("/cliente", $options);
-
-
-       // echo $response->getBody();
+        
         
 
     /**
@@ -78,8 +105,16 @@ class ClientesController extends Controller
     
      public function show($id)
     {
-        //$clientes = $this->clientes->find($id);
-        //return view('clienteid', compact('clientes'));
+        $client = new Client([
+            'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
+        ]);
+
+        $response = $client->request('GET',"escolas/{id}");
+        $clientes = json_decode( $response->getBody()->getContents());
+
+        return view('clientes.clientes-detail', compact('clientes-detail'));
+        // $clientes = $this->clientes->find($id);
+        // return view('clientes.clientes-detail', compact('clientes'));
     }
 
     /**

@@ -14,13 +14,16 @@
 </head>
 
 <body>
+<div class="container" id="containerajax">
 
-@component('layouts.menu-lateral')
-@endcomponent
+</div>
+
+
 <main role="main">
 @hasSection('body')
 @yield('body')
 @endif   
+
     @yield('conteudo-view')
 
 </main>
@@ -31,6 +34,8 @@
     @yield('javascript')
 @endif    
 </div>
+
+
 
 </body>
 

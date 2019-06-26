@@ -7,7 +7,7 @@
 
 </div>
 <div class = "container" id ="divmenu">
-<ul class="nav flex-column" >
+<ul id = "navmenu" class="nav flex-column" >
     <li class="nav-item">
         <a href="/clientes">    
         <i class="fas fa-address-book"></i>
@@ -17,14 +17,14 @@
         
     </li>
     <li class="nav-item">
-        <a href="">
+        <a href="/menu">
         <i class="fa fa-users"></i>
         <h4>Cadastrar menu</h4>
         <h6>Fazer o cadastro de uma nova opção<br>de menu para o sistema</h6>
         </a>
     </li>
     <li class="nav-item">
-        <a href="">
+        <a href="/principal">
         <i class="fas fa-sign-out-alt"></i>
                 <h4>Sair</h4>
                 <h6>Desconectar-se do sistema...</h6>
