@@ -4,6 +4,7 @@
 
 @include('layouts.menu-lateral')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 <div id="containerteste">
@@ -102,7 +103,7 @@ width="100%" name="data_limite" placeholder="DD/MM/AAAA"
 type="date" class="form-control" id="dataLimite"></div>
 </label>
 <div class="modal-footer">
-    <button submit class="btn btn-primary">Salvar</button>
+    <button id="salvar"  submit class="btn btn-primary">Salvar</button>
     <button type="cancel" class="btn btn-secondary" data-dismiss="modal">
         Cancelar</button>
 </div>
@@ -117,10 +118,11 @@ type="date" class="form-control" id="dataLimite"></div>
 </div>
 
 
+
 @endsection
 
  @section('javascript')
-
+ {{{csrf_field()}}}
  <script type="text/javascript">
 
 $(document).ready(function(){
@@ -172,7 +174,7 @@ function carregarClientes(){
         }
         $("#formCliente").submit(function(event){   
  event.preventDefault();
- criarCliente();
+//  criarCliente();
  $("#dlgClientes").modal('hide');
     })
 });
@@ -180,40 +182,88 @@ function carregarClientes(){
 
 
 
-function criarCliente(){
-    client = 
-            { cnpj: $("#cnpjCliente").val(),
-             razao_social : $("#razaoSocial").val(),
-             nome_fantasia : $("#nomeFantasia").val(),
-             data_limite : $("#dataLimite").val()
+// function criarCliente(){
+//     client = 
+//             { cnpj: $("#cnpjCliente").val(),
+//              razao_social : $("#razaoSocial").val(),
+//              nome_fantasia : $("#nomeFantasia").val(),
+//              data_limite : $("#dataLimite").val()
             
-};
+// };
 
-$.ajax({
-    url: "api/clientes",
-    data: $('#formCliente').serialize(),
-    type: "POST",
-    dataType: "json",
-    success: function(data){
-         $("#formCliente").val(function(){
-                linha = montarLinha(data);
-            $('#tabelaClientes>tbody').append(linha);
-        })
+// $.ajax({
+//     url: "api/clientes",
+//     data: $('#formCliente').serialize(),
+//     type: "POST",
+//     dataType: "json",
+//     success: function(data){
+//          $("#formCliente").val(function(){
+//                 linha = montarLinha(data);
+//             $('#tabelaClientes>tbody').append(linha);
+//         })
                
-    },
-    error: function() {
-        console.log('Erro na requisição');
+//     },
+//     error: function() {
+//         console.log('Erro na requisição');
 
-    }
-            });
+//     }
+//             });
 
-}
+// }
+
+// $("#dlgClientes").submit(function(e){
+//             e.preventDefault();
+            
+//             var formulario = $(this);
+//             var retorno = inserirFormulario(formulario)
+//         });
+//             function inserirFormulario(dados){
+//                 $.ajax({
+//                     type: "POST",
+//                      data:dados.serialize(),
+//                     url:"/api/clientes",
+//                     async:false
+//                 }).then(sucesso,falha);
+//                 function sucesso(data) {
+//                     console.log(data);
+//                 }
+//                 function falha(){
+//                     console.log("erro");
+//                 }
+//             }
+
+$("#salvar").click(function(){
+    var cnpj = $('#cnpjCliente').val();
+    var razao = $('#razaoSocial').val();
+    var nome = $('#nomeFantasia').val();
+    var data = $ ('#dataLimite').val();
+    var token_key =  $('input[name=_token]').val();
+      $.ajax({
+       type: "POST",
+       url: '{{url("/api/clientes")}}',
+       data: {
+        '_token': token_key,
+        'cnpj': cnpj,
+        'razao_social': razao,
+        'nome_fantasia': nome,
+        'data_limite': data,
+      },
+       success: function(data)
+       {
+        alert('in_sucess');
+        linha = montarLinha(data);
+        $('#tabelaClientes>tbody').append(linha);
+        $('#tabelaClientes>tbody').append(linha);
+
+       }
+    })
+});   
 
 $(document).ready(function(){
     $('#navmenu a').click(function(e){
         
         e.preventDefault();
-        $('#containerteste').empty();
+        //$('#containerteste').empty();
       var href = $(this).attr('href');
         $("#containerteste").load( href + "#containerteste");
         
