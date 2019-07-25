@@ -1,9 +1,6 @@
-@extends('layouts.master')
-
-@section('body')
-
-
-
+@extends('layouts.master') 
+@section('body') 
+@include('layouts.menu-lateral')
 
 
 <div id=content>
@@ -12,37 +9,39 @@
 <div class="margin0auto h100vh row">
 <div class="col-menu-client inner-content col-5">
 
-@foreach ($clientes as $clientes)
-<form class>
+
+<form action="" method="post">
+{{ method_field('PUT') }}
+{{ csrf_field()}}
 <div class="form-header">
-    <h5>{{$clientes->nome_fantasia}}</h5>@endforeach
+    <h5>{{$clientes->razao_social}}</h5>
 
 <div class="form-group">
 
-<div class="input-group">
+
 <div class="form-group">
 <label for="cnpjCliente" class="control-label">CNPJ
 </label>
-<input type="text" class="form-control" id="cnpjCLiente"
-        placeholder = "CNPJ">
+<input name="cnpj" class="form-control" id="cnpjCLiente"
+       value="{{$clientes->cnpj}}" placeholder = "CNPJ">
 </div>
 </div>
 <div class="form-group">
 
-<div class="input-group">
+
 <div class="form-group">
 <label for="razaoSocial" class="control-label">Razão Social
 </label>
-<input type="text" class="form-control" id="RazãoSocial"
-        placeholder = "Razão Social">
+<input name="razaoSocial" class="form-control" id="RazãoSocial"
+      value="{{$clientes->razao_social}}"  placeholder = "Razão Social">
 </div>
 </div>
 
 <div class="form-group">
 <label for="nomeFantasia" class="control-label">Nome Fantasia
 </label>
-<input type="text" class="form-control" id="nomeFantasia"
-placeholder="Nome Fantasia">
+<input name="nomeFantasia"  class="form-control" id="nomeFantasia"
+value="{{$clientes->nome_fantasia}}"placeholder="Nome Fantasia">
 </div>
 </div>
 
@@ -52,11 +51,11 @@ placeholder="Nome Fantasia">
 <label for="dataLimite" class="control-label">Data Limite
 <div class="DayPickerInput"><input class="form-control is-valid"
 width="100%" name="data_limite" placeholder="DD/MM/AAAA"
-type="date" class="form-control" id="dataLimite"></div>
+type="date" class="form-control" id="dataLimite" value="{{ \Carbon\Carbon::parse($clientes->data_limite)->format('Y-m-d') }}"></div>
 </label>
 <div class="form-group">
 <div class="flex-space-between">
-    <button type="button" class="btn btn-danger">
+    <button id="teste" type="button" class="btn btn-danger">
 <span>Remover</span>
 </button>
 <button type="submit" class="btn btn-primary">
@@ -119,18 +118,46 @@ type="date" class="form-control" id="dataLimite"></div>
 
           
  @endsection
+ 
+ 
+ 
  @section('javascript')
+ {{{csrf_field()}}}
+
 
 <script type="text/javascript">
-
+$(document).ready(function(){
+console.log(1+1)
 $.ajaxSetup({
  headers:{
      'X-CSRF-TOKEN':"{{ csrf_token() }}"
  }
 });
 
+$("#teste").click(function(){
+$.get('http://172.16.0.198:8080/gestor_api/clientes', function(data){
+$("#clienteName").html(data.cliente.id);
+});
+});
+
+});
+
+ $.ajax({
+        url : "{{url("/api/clientes")}}",
+        type: "GET",
+        dataType: "json",
+        success: function(data){
+          $("#dataLimite").val(data.clientes.data_limite);
+            console.log(data);
+        },
+        error: function(){
+            console.log("Erro na requisição");
+        }  
+    });
 
 </script>
+
+@endsection
 </html>
 
 

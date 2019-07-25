@@ -18,9 +18,9 @@ class ClientesController extends Controller
         $this->clientes = $clientes;
     }
 
-    public function indexdetailCliente()
+    public function clientesdetail()
     {
-        return view ('clientes.clientes-detail');
+        return view('clientes.clientes-detail');
     }
 
     public function indexView()
@@ -109,10 +109,10 @@ class ClientesController extends Controller
             'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
         ]);
 
-        $response = $client->request('GET',"escolas/{id}");
+        $response = $client->request('GET',"clientes/{$id}");
         $clientes = json_decode( $response->getBody()->getContents());
 
-        return view('clientes.clientes-detail', compact('clientes-detail'));
+        return view('clientes.clientes-detail', compact('clientes'));
         // $clientes = $this->clientes->find($id);
         // return view('clientes.clientes-detail', compact('clientes'));
     }

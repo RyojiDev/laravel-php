@@ -136,10 +136,10 @@ type="date" class="form-control" id="dataLimite"></div>
                         const date = new Date(t);
                         console.log(date.toLocaleDateString());
                         var linha = "<tr>" +
-                            "<td><a href='/clientes-detail/" + c.id.toString() + "'>" + c.id + "</a></td>" +
-                            "<td><a href='/clientes-detail/" + c.id.toString() + "'>" + c.cnpj + "</td>" +
-                            "<td><a href='/clientes-detail/" + c.id.toString() + "'>" + c.razao_social + "</td>" +
-                            "<td><a href='/clientes-detail/" + c.id.toString() + "'>" + c.nome_fantasia + "</td>" +
+                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.id + "</a></td>" +
+                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.cnpj + "</td>" +
+                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.razao_social + "</td>" +
+                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.nome_fantasia + "</td>" +
                             "<td>" + new Date(c.data_limite).toLocaleDateString(); +
                         "</td>" +
 
