@@ -148,7 +148,13 @@ class ClientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = new Client([
+            'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
+        ]);
+
+        $response = $client->request('DELETE',"cliente");
+        //$clientes = json_decode( $response->getBody()->getContents());
+
     }
 
     

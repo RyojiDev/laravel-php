@@ -10,19 +10,22 @@
 <div class="col-menu-client inner-content col-5">
 
 
-<form action="" method="post">
-{{ method_field('PUT') }}
-{{ csrf_field()}}
+<form id="formclientes" action="" method="delete">
+
 <div class="form-header">
     <h5>{{$clientes->razao_social}}</h5>
 
 <div class="form-group">
-
+{{ method_field('DELETE') }}
+<div class="form-group">
+<input type="hidden" name="id" class="form-control" id="id"
+      value="{{$clientes->id}}"  placeholder = "id">
+</div>
 
 <div class="form-group">
 <label for="cnpjCliente" class="control-label">CNPJ
 </label>
-<input name="cnpj" class="form-control" id="cnpjCLiente"
+<input name="cnpj" class="form-control" id="cnpjCliente"
        value="{{$clientes->cnpj}}" placeholder = "CNPJ">
 </div>
 </div>
@@ -32,7 +35,7 @@
 <div class="form-group">
 <label for="razaoSocial" class="control-label">Razão Social
 </label>
-<input name="razaoSocial" class="form-control" id="RazãoSocial"
+<input name="razaoSocial" class="form-control" id="razaoSocial"
       value="{{$clientes->razao_social}}"  placeholder = "Razão Social">
 </div>
 </div>
@@ -55,7 +58,7 @@ type="date" class="form-control" id="dataLimite" value="{{ \Carbon\Carbon::parse
 </label>
 <div class="form-group">
 <div class="flex-space-between">
-    <button id="teste" type="button" class="btn btn-danger">
+    <button id="deletar" type="button" class="btn btn-danger">
 <span>Remover</span>
 </button>
 <button type="submit" class="btn btn-primary">
@@ -124,37 +127,54 @@ type="date" class="form-control" id="dataLimite" value="{{ \Carbon\Carbon::parse
  @section('javascript')
  {{{csrf_field()}}}
 
-
+ {{ csrf_field() }}
+ 
 <script type="text/javascript">
 $(document).ready(function(){
 console.log(1+1)
+
 $.ajaxSetup({
- headers:{
-     'X-CSRF-TOKEN':"{{ csrf_token() }}"
- }
+  headers: {
+    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Header": "x-requested-with"
+  }
 });
 
-$("#teste").click(function(){
-$.get('http://172.16.0.198:8080/gestor_api/clientes', function(data){
-$("#clienteName").html(data.cliente.id);
-});
-});
+url = "http://172.16.0.198:8080/gestor_api/cliente";
 
-});
+$("#deletar").click(function() {
 
- $.ajax({
-        url : "{{url("/api/clientes")}}",
-        type: "GET",
-        dataType: "json",
-        success: function(data){
-          $("#dataLimite").val(data.clientes.data_limite);
-            console.log(data);
-        },
-        error: function(){
-            console.log("Erro na requisição");
-        }  
+  var id = document.getElementById('id').value;
+  var cnpj = $('#cnpjCliente').val();
+  var razao = $('#razaoSocial').val();
+  var nome = $('#nomeFantasia').val();
+  var data_limite = $('#dataLimite').val();
+
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: 'http://172.16.0.198:8080/gestor_api/cliente/',
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      "X-CSRF-TOKEN": "{{ csrf_token() }}",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Header": "x-requested-with",
+      'Access-Control-Allow-Origin': '*'
+    },
+    processData: false,
+    data: {
+      "id": 44
+    }
+  };
+
+  $.ajax(settings)
+    .done(function(response) {
+      console.log(response);
+    })
     });
-
+  });
 </script>
 
 @endsection

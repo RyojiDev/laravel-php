@@ -13,4 +13,5 @@ Route::get('/clientes/{id}' , 'ClientesController@show');
 Route::put('/clientes/update/{cliente}', 'ClientesController@update')->name('clientes.update');
 Route::get('/menu','MenuCadastroController@index');
 Route::get('/clientes-detail', 'ClientesController@indexdetailCliente');
+Route::options('/clientes/destroy/{id}','ClientesController@destroy');
 
