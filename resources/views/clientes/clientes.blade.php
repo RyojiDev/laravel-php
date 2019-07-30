@@ -6,6 +6,7 @@
 <div id="containerteste">
     <div id="content">
         <div id="inner-content">
+
             <div class="clients-table-page inner-content">
                 <div class="flex-space-between">
                     <h4>Clientes</h4>
@@ -44,11 +45,18 @@
                         </table>
                         <div>
 
-                            <button id="novoclientebotao" class="btn btn-sm btn-primary" role="button">Novo Cliente</button> <button type="button" class="floating-action-button shadow btn btn-primary">
+                            <button id="novoclientebotao" class="btn btn-sm btn-primary" role="button">Novo
+                                Cliente</button> <button type="button"
+                                class="floating-action-button shadow btn btn-primary">
 
-<a href="{{route('clientes.create')}}">Novo Cliente<span class="glyphicon glyphicon-plus"></span></a>
-    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg></button>
+                                <a href="{{route('clientes.create')}}">Novo Cliente<span
+                                        class="glyphicon glyphicon-plus"></span></a>
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
+                                    height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                                    </path>
+                                </svg></button>
                         </div>
                     </div>
                 </div>
@@ -63,7 +71,7 @@
     <div class="modal fade" tabindex="-1" role="dialog" id="dlgClientes">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form class="form-horizontal" id="formCliente">
+                <form name="formCliente" class="form-horizontal" id="formCliente">
                     <div class="modal-header">
                         <h5>Cadastrar Cliente</h5>
                     </div>
@@ -71,53 +79,55 @@
                         <input type="hidden" id="id" class="form-control">
                         <div class="form-group">
                             <label for="cnpjCliente" class="control-label">CNPJ
-</label>
+                            </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="cnpjCliente" placeholder="CNPJ">
+                                <input type="text" required="required" name="numbers" pattern="[0-9]+$" class="form-control" id="cnpjCliente" name="cnpjCliente" placeholder="CNPJ">
                             </div>
                             <label for="nomeCliente" class="control-label">Razão Social
-</label>
-                            <input type="text" class="form-control" id="razaoSocial" placeholder="Razão Social">
+                            </label>
+                            <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" placeholder="Razão Social">
                         </div>
 
 
                         <div class="form-group">
                             <label for="nomeFantasia" class="control-label">Nome Fantasia
-</label>
+                            </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="nomeFantasia" placeholder="Nome Fantasia">
+                                <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" placeholder="Nome Fantasia">
                             </div>
 
                             <div class="form-group">
                                 <label for="dataLimite" class="control-label">Data Limite
-<div class="DayPickerInput"><input class="form-control is-valid"
-width="100%" name="data_limite" placeholder="DD/MM/AAAA"
-type="date" class="form-control" id="dataLimite"></div>
-</label>
+                                    <div class="DayPickerInput">
+                                        <input width="100%"
+                                            name="dataLimite" placeholder="DD/MM/AAAA" type="date" class="form-control"
+                                            id="dataLimite"></div>
+                                </label>
                                 <div class="modal-footer">
-                                    <button id="salvar" submit class="btn btn-primary">Salvar</button>
+                                    <button id="salvar" type="submit" class="btn btn-primary">Salvar</button>
                                     <button type="cancel" class="btn btn-secondary" data-dismiss="modal">
-        Cancelar</button>
+                                        Cancelar</button>
                                 </div>
                 </form>
-                </div>
-
-
-                </div>
-                </div>
             </div>
+
+
+        </div>
+    </div>
+</div>
 
 
             @endsection @section('javascript') {{{csrf_field()}}}
             <script type="text/javascript">
                 $(document).ready(function() {
 
-
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': "{{ csrf_token() }}"
                         }
                     });
+
+                    
 
                     $('#novoclientebotao').click(function() {
                         novoCliente();
@@ -128,7 +138,15 @@ type="date" class="form-control" id="dataLimite"></div>
                         $('#razaoSocial').val('');
                         $('#nomeFantasia').val('');
                         $('#dataLimite').val('');
+                        $("#salvar").hide();
                         $('#dlgClientes').modal('show');
+                        
+                        
+                        
+                       
+                    
+
+
                     }
 
                     function montarLinha(c) {
@@ -167,55 +185,7 @@ type="date" class="form-control" id="dataLimite"></div>
 
 
 
-                    // function criarCliente(){
-                    //     client =
-                    //             { cnpj: $("#cnpjCliente").val(),
-                    //              razao_social : $("#razaoSocial").val(),
-                    //              nome_fantasia : $("#nomeFantasia").val(),
-                    //              data_limite : $("#dataLimite").val()
-
-                    // };
-
-                    // $.ajax({
-                    //     url: "api/clientes",
-                    //     data: $('#formCliente').serialize(),
-                    //     type: "POST",
-                    //     dataType: "json",
-                    //     success: function(data){
-                    //          $("#formCliente").val(function(){
-                    //                 linha = montarLinha(data);
-                    //             $('#tabelaClientes>tbody').append(linha);
-                    //         })
-
-                    //     },
-                    //     error: function() {
-                    //         console.log('Erro na requisição');
-
-                    //     }
-                    //             });
-
-                    // }
-
-                    // $("#dlgClientes").submit(function(e){
-                    //             e.preventDefault();
-
-                    //             var formulario = $(this);
-                    //             var retorno = inserirFormulario(formulario)
-                    //         });
-                    //             function inserirFormulario(dados){
-                    //                 $.ajax({
-                    //                     type: "POST",
-                    //                      data:dados.serialize(),
-                    //                     url:"/api/clientes",
-                    //                     async:false
-                    //                 }).then(sucesso,falha);
-                    //                 function sucesso(data) {
-                    //                     console.log(data);
-                    //                 }
-                    //                 function falha(){
-                    //                     console.log("erro");
-                    //                 }
-                    //             }
+                   
 
                     $("#salvar").click(function() {
                         var cnpj = $('#cnpjCliente').val();
@@ -252,32 +222,41 @@ type="date" class="form-control" id="dataLimite"></div>
                             $("#containerteste").load(href + "#containerteste");
 
                         });
+                        validarForm();
+                        $('#cnpjCliente, #razaoSocial, #nomeFantasia', '#dataLimite').change(validarForm);
+
+                        
                     });
 
-                    // //teste clicar menu
-                    // $("#navclientes").click(function() {
-
-                    //     $.get('/clientes', data => {
-                    //         $('#containerteste').html(data)
-                    //     })
-                    //     return false;
-                    // });
-
-                    // $("#navcadastro").click(function() {
-
-
-                    //     $.get('/menu', data => {
-                    //         $('#containerteste').html(data)
-                    //     })
-                    // })
-
-
-
+                    
 
                     $(function() {
                         carregarClientes();
+                        
+                                
+                    });
 
-                    })
+                    $("#formCliente").validate({
+                        rules: {
+                            required: true,
+                            cnpjCliente: { 
+                            maxLength: 20,
+                            minLength: 10
+                        }
+                        }
+                    });
+
+                     function validarForm(){
+                            
+                        if ($("#cnpjCliente").val().length > 0 && $("#razaoSocial").val().length > 0 && $("#nomeFantasia").val() > 0
+                            && ("#dataLimite").val().length > 0){
+                             $("#salvar").show();
+                            }else{
+                                
+                            console.log("nao estou caindo no if");
+                           
+                            }
+                            }
 
                 });
             </script>

@@ -1,11 +1,17 @@
 <nav class="sidebar-header" id="principal">
 
-<div class="main-icon" id = "icone">    
-<img src="icone_300.png" class="main-icon" height="90"
- >
- <h4 id = "iconeTitulo">Admin Gestor</h4>
+<div class="main-icon" id = "iconeP">    
+
+<img src="img/icone_300.png" class="css-class" id="icon">
+
+
+ 
 
 </div>
+
+    <div id = "divTitulo">
+<h4 id = "iconeTitulo">Admin Gestor</h4>
+    </div>
 <div class = "container" id ="divmenu">
 <ul id = "navmenu" class="nav flex-column" >
     <li class="nav-item">
