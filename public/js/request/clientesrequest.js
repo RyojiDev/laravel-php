@@ -58,7 +58,7 @@ $(document).ready(function() {
         }
 
         axios
-            .post(url + "cliente", {
+            .data(url + "cliente", {
                 headers: {
                     "Content-Type": "application/json;charset=UTF-8",
                     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
