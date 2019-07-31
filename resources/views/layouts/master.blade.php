@@ -10,6 +10,8 @@
 <link href="{{asset('css/configuracao.css')}}" rel="stylesheet">
 
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
+<link href="{{asset('css/bootstrap-datepicker.css')}}" rel="stylesheet">
+
 
 
 @yield('css-view')
@@ -34,7 +36,16 @@
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/date.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/jquery.validate.min.js')}}" rel="text/javascript"></script>
-<script src="{{asset('js/localization/messages_pt_BR')}}" rel="text/javascript"></script>
+<script src="{{asset('js/localization/messages_pt_BR.min.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/bootstrap-datepicker.min.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/locales/bootstrap-datepicker.pt-BR.min.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/data/formatardata.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/request/clientesrequest.js')}}" rel="text/javascript"></script>
+
+
+
+
+
 
 
 

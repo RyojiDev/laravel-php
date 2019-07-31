@@ -51,12 +51,20 @@
 
 
 
-                        <div class="form-group">
-                            <label for="dataLimite" class="control-label">Data Limite
-                                <div class="DayPickerInput"><input class="form-control is-valid" width="100%"
-                                        name="data_limite" placeholder="DD/MM/AAAA" type="date" class="form-control"
-                                        id="dataLimite"
-                                        value="{{ \Carbon\Carbon::parse($clientes->data_limite)->format('Y-m-d') }}">
+                        
+                                <label for="dataLimite" class="control-label">Data Limite
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="dataLimite"
+                                            placeholder="dd/mm/yyyy" value="{{ \Carbon\Carbon::parse($clientes->data_limite)->format('Y-m-d') }}">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                            </label>
+                                        
                                 </div>
                             </label>
                             <div class="form-group">
@@ -126,7 +134,7 @@
  @endsection
  
  
- 
+
  @section('javascript')
  {{{csrf_field()}}}
 
@@ -136,84 +144,16 @@
 $(document).ready(function () {
     console.log(1 + 1)
 
-    const url = 'http://172.16.0.198:8080/gestor_api/';
 
-    $("#deletar").click(function () {
-        let id = $('#id').val();
-
-        let selectedClient = {
-            'id': id,
-            'cnpj': "",
-            'razao_social': "",
-            'nome_fantasia': "",
-            'data_limite': ""
-        }
-
-        axios
-            .delete(url + "cliente", {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                    "Access-Control-Allow-Header": "x-requested-with",
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: selectedClient
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
-
-    $("#atualizar").click(function () {
-        let id = $('#id').val();
-        let cnpj = $("#cnpjCliente").val();
-        let razao = $("#razaoSocial").val();
-        let nome = $("#nomeFantasia").val();
-        let data = $("#dataLimite").val();
-
-        let selectedClient = {
-            'id': id,
-            'cnpj': cnpj,
-            'razao_social': razao,
-            'nome_fantasia': nome,
-            'data_limite': data
-        }
-
-        axios
-            .put(url + "cliente", {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                    "Access-Control-Allow-Header": "x-requested-with",
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: selectedClient
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    
     });
     
 
-    
-    // $("#formClientes").validate({
-    //                     rules:{
-    //                         cnpjCliente: { 
-    //                         maxLength: 20,
-    //                         minLength: 10,
-    //                         require: true
-    //                     }
-    //                     }
-    //                 });
-                });
 
+   
     
+
+      
                 
 
 

@@ -81,11 +81,13 @@
                             <label for="cnpjCliente" class="control-label">CNPJ
                             </label>
                             <div class="input-group">
-                                <input type="text" required="required" name="numbers" pattern="[0-9]+$" class="form-control" id="cnpjCliente" name="cnpjCliente" placeholder="CNPJ">
+                                <input type="text" required="required" name="numbers" pattern="[0-9]+$"
+                                    class="form-control" id="cnpjCliente" name="cnpjCliente" placeholder="CNPJ">
                             </div>
                             <label for="nomeCliente" class="control-label">Razão Social
                             </label>
-                            <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" placeholder="Razão Social">
+                            <input type="text" class="form-control" id="razaoSocial" name="razaoSocial"
+                                placeholder="Razão Social">
                         </div>
 
 
@@ -93,172 +95,42 @@
                             <label for="nomeFantasia" class="control-label">Nome Fantasia
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" placeholder="Nome Fantasia">
+                                <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia"
+                                    placeholder="Nome Fantasia">
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <label for="dataLimite" class="control-label">Data Limite
-                                    <div class="DayPickerInput">
-                                        <input width="100%"
-                                            name="dataLimite" placeholder="DD/MM/AAAA" type="date" class="form-control"
-                                            id="dataLimite"></div>
-                                </label>
-                                <div class="modal-footer">
-                                    <button id="salvar" type="submit" class="btn btn-primary">Salvar</button>
-                                    <button type="cancel" class="btn btn-secondary" data-dismiss="modal">
-                                        Cancelar</button>
-                                </div>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" id="dataLimite"
+                                            placeholder="dd/mm/yyyy">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                            </label>
+                            <div class="modal-footer">
+                                <button id="salvar" type="submit" class="btn btn-primary">Salvar</button>
+                                <button type="cancel" class="btn btn-secondary" data-dismiss="modal">
+                                    Cancelar</button>
+                            </div>
                 </form>
             </div>
 
 
         </div>
     </div>
-</div>
+    </div>
 
 
-            @endsection @section('javascript') {{{csrf_field()}}}
+            @endsection 
+            
+            @section('javascript')
             <script type="text/javascript">
-                $(document).ready(function() {
-
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        }
-                    });
-
-                    
-
-                    $('#novoclientebotao').click(function() {
-                        novoCliente();
-                    });
-
-                    function novoCliente() {
-                        $('#cnpjCliente').val('');
-                        $('#razaoSocial').val('');
-                        $('#nomeFantasia').val('');
-                        $('#dataLimite').val('');
-                        $("#salvar").hide();
-                        $('#dlgClientes').modal('show');
-                        
-                        
-                        
-                       
-                    
-
-
-                    }
-
-                    function montarLinha(c) {
-                        let t = "2019-03-30T15:53:23.106+0000"
-                        const date = new Date(t);
-                        console.log(date.toLocaleDateString());
-                        var linha = "<tr>" +
-                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.id + "</a></td>" +
-                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.cnpj + "</td>" +
-                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.razao_social + "</td>" +
-                            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.nome_fantasia + "</td>" +
-                            "<td>" + new Date(c.data_limite).toLocaleDateString(); +
-                        "</td>" +
-
-                        "</td>" +
-                        "</tr>";
-
-                        return linha;
-                    }
-
-                    function carregarClientes() {
-                        $.getJSON('/api/clientes', function(clientes) {
-                            for (var i = 0; i < clientes.length; i++) {
-                                console.log(clientes[i])
-                                linha = montarLinha(clientes[i]);
-                                $('#tabelaClientes>tbody').append(linha);
-
-                            }
-                            $("#formCliente").submit(function(event) {
-                                event.preventDefault();
-                                //  criarCliente();
-                                $("#dlgClientes").modal('hide');
-                            })
-                        });
-                    }
-
-
-
-                   
-
-                    $("#salvar").click(function() {
-                        var cnpj = $('#cnpjCliente').val();
-                        var razao = $('#razaoSocial').val();
-                        var nome = $('#nomeFantasia').val();
-                        var data = $('#dataLimite').val();
-                        var token_key = $('input[name=_token]').val();
-                        $.ajax({
-                            type: "POST",
-                            url: '{{url("/api/clientes")}}',
-                            data: {
-                                '_token': token_key,
-                                'cnpj': cnpj,
-                                'razao_social': razao,
-                                'nome_fantasia': nome,
-                                'data_limite': data,
-                            },
-                            success: function(data) {
-                                alert('in_sucess');
-                                linha = montarLinha(data);
-                                $('#tabelaClientes>tbody').append(linha);
-                                $('#tabelaClientes>tbody').append(linha);
-
-                            }
-                        })
-                    });
-
-                    $(document).ready(function() {
-                        $('#navmenu a').click(function(e) {
-
-                            e.preventDefault();
-                            //$('#containerteste').empty();
-                            var href = $(this).attr('href');
-                            $("#containerteste").load(href + "#containerteste");
-
-                        });
-                        validarForm();
-                        $('#cnpjCliente, #razaoSocial, #nomeFantasia', '#dataLimite').change(validarForm);
-
-                        
-                    });
-
-                    
-
-                    $(function() {
-                        carregarClientes();
-                        
-                                
-                    });
-
-                    $("#formCliente").validate({
-                        rules: {
-                            required: true,
-                            cnpjCliente: { 
-                            maxLength: 20,
-                            minLength: 10
-                        }
-                        }
-                    });
-
-                     function validarForm(){
-                            
-                        if ($("#cnpjCliente").val().length > 0 && $("#razaoSocial").val().length > 0 && $("#nomeFantasia").val() > 0
-                            && ("#dataLimite").val().length > 0){
-                             $("#salvar").show();
-                            }else{
-                                
-                            console.log("nao estou caindo no if");
-                           
-                            }
-                            }
-
-                });
+               
             </script>
 
             @endsection
