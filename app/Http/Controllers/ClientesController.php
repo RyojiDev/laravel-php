@@ -106,7 +106,8 @@ class ClientesController extends Controller
      public function show($id)
     {
         $client = new Client([
-            'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
+           //'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
+           'base_uri'=> 'http://localhost:8080/',
         ]);
 
         $response = $client->request('GET',"clientes/{$id}");

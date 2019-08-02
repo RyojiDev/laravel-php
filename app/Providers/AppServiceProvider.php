@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      #não mexer nessa linha - servidor local Home //'base_uri' => 'http://localhost:8080/gestor_api/',  
 
                   'base_uri' => 'http://172.16.0.198:8080/gestor_api/',
+                  //'base_uri' => 'http://localhost:8080',
                 
                     'timeout' => 2.0,
                ]);

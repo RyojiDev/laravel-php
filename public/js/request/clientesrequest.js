@@ -1,6 +1,10 @@
 $(document).ready(function() {
     console.log("deu certo");
 
+
+
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -8,8 +12,15 @@ $(document).ready(function() {
     });
 
     const url = 'http://172.16.0.198:8080/gestor_api/';
+    //const url = 'http://localhost:8080/';
 
+    var url_atual = window.location.href;
+    console.log(url_atual);
+    url_clientes = url_atual.substring(32, 21);
 
+    const url_atual_clientes = '/clientes';
+
+    console.log(url_clientes);
 
 
 
@@ -52,23 +63,21 @@ $(document).ready(function() {
 
         let selectedClient = {
             'cnpj': cnpj,
-            'razao_social': razao,
+            'data_limite': data,
             'nome_fantasia': nome,
-            'data_limite': data
+            'razao_social': razao,
+
+
+
         }
 
+
+
         axios
-            .data(url + "cliente", {
-                headers: {
-                    "Content-Type": "application/json;charset=UTF-8",
-                    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                    "Access-Control-Allow-Header": "x-requested-with",
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: selectedClient
-            })
+            .post(url + "cliente", selectedClient)
             .then(function(response) {
                 console.log(response);
+
             })
             .catch(function(error) {
                 console.log(error);
@@ -117,9 +126,19 @@ $(document).ready(function() {
     });
 
     //*******************************************//
+    //------------Confirmar deletar--------------//
+    //*******************************************//
+
+    $("#deletar").click(function() {
+        $("#confirm-delete").modal('show');
+    });
+
+
+
+    //*******************************************//
     //Requisição HTTP Axios - DEletar
     //*******************************************//
-    $("#deletar").click(function() {
+    $("#deletar-clientes").click(function() {
         console.log("oi cheguei");
         let id = $('#id').val();
 
@@ -143,15 +162,22 @@ $(document).ready(function() {
             })
             .then(function(response) {
                 console.log(response);
+                $(window).attr('location', '/clientes')
             })
             .catch(function(error) {
                 console.log(error);
+
             });
+
+
+
+
     });
 
 
 
     ///////////////////////////////////////////////
+
 
 
 
@@ -182,40 +208,86 @@ $(document).ready(function() {
     //*******************************************//
     // CASO HOUVER CLIENTES, MONTA A LINHA COM OS DADOS
     //*******************************************//
+    if (url_atual_clientes == url_clientes) {
 
-    function montarLinha(c) {
-        let t = "2019-03-30T15:53:23.106+0000"
-        const date = new Date(t);
-        console.log(date.toLocaleDateString());
-        var linha = "<tr>" +
-            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.id + "</a></td>" +
-            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.cnpj + "</td>" +
-            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.razao_social + "</td>" +
-            "<td><a href='/clientes/" + c.id.toString() + "'>" + c.nome_fantasia + "</td>" +
-            "<td>" + new Date(c.data_limite).toLocaleDateString(); +
-        "</td>" +
 
-        "</td>" +
-        "</tr>";
+        axios
+            .get(url + "clientes")
+            .then(function(response) {
+                console.log(response);
+                response.data.forEach(cliente => {
+                    linha = montarLinha(cliente)
+                    $("#tabelaClientes").append(linha)
+                    $("#formCliente").submit(function(event) {
+                        event.preventDefault();
+                        criarCliente();
+                        $("#dlgClientes").modal('hide');
+                    })
+                })
 
-        return linha;
-    }
-
-    function carregarClientes() {
-        $.getJSON('/api/clientes', function(clientes) {
-            for (var i = 0; i < clientes.length; i++) {
-                console.log(clientes[i])
-                linha = montarLinha(clientes[i]);
-                $('#tabelaClientes>tbody').append(linha);
-
-            }
-            $("#formCliente").submit(function(event) {
-                event.preventDefault();
-                //  criarCliente();
-                $("#dlgClientes").modal('hide');
             })
-        });
+            .catch(function(error) {
+                console.log(error);
+            });
+
+        function montarLinha(response) {
+            let t = "2019-03-30T15:53:23.106+0000"
+            const date = new Date(t);
+            console.log(date.toLocaleDateString());
+            var linha = "<tr>" +
+                "<td><a href='/clientes/" + response.id + "'>" + response.id + "</a></td>" +
+                "<td><a href='/clientes/" + response.id + "'>" + response.cnpj + "</td>" +
+                "<td><a href='/clientes/" + response.id + "'>" + response.razao_social + "</td>" +
+                "<td><a href='/clientes/" + response.id + "'>" + response.nome_fantasia + "</td>" +
+                "<td>" + new Date(response.data_limite).toLocaleDateString(); +
+            "</td>" +
+
+            "</td>" +
+            "</tr>";
+
+            return linha;
+        }
+
+    } else {
+        console.log("a url é diferente por isso não executaremos essa instrução");
     }
+
+
+
+    var url_atual = window.location.href;
+    console.log(url_atual);
+    id_url = url_atual.substring(35, 31);
+    console.log(id_url);
+
+    axios
+        .get(url + "clientes" + "/" + id_url)
+        .then(function(response) {
+            console.log(response);
+            $("#cnpjCliente").val(response.cnpj);
+
+
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+    // function carregarClientes() {
+    //     $.getJSON('/api/clientes', function(clientes) {
+    //         for (var i = 0; i < clientes.length; i++) {
+    //             console.log(clientes[i])
+    //             linha = montarLinha(clientes[i]);
+    //             $('#tabelaClientes>tbody').append(linha);
+
+    //         }
+    //         $("#formCliente").submit(function(event) {
+    //             event.preventDefault();
+    //             //  criarCliente();
+    //             $("#dlgClientes").modal('hide');
+    //         })
+    //     });
+    // }
+
+
 
 
 
@@ -244,7 +316,7 @@ $(document).ready(function() {
 
 
     $(function() {
-        carregarClientes();
+        //carregarClientes();
 
 
     });

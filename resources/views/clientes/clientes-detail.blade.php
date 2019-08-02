@@ -13,20 +13,20 @@
                     <form name="formClientes" id="formClientes">
 
                         <div class="form-header">
-                            <h5>{{$clientes->razao_social}}</h5>
+                            <h5></h5>
 
                             <div class="form-group">
 
                                 <div class="form-group">
                                     <input type="hidden" name="id" class="form-control" id="id"
-                                        value="{{$clientes->id}}" placeholder="id">
+                                        value="" placeholder="id">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="cnpjCliente" class="control-label">CNPJ
                                     </label>
                                     <input name="cnpj" pattern="/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/"
- class="form-control" id="cnpjCliente" value="{{$clientes->cnpj}}"
+ class="form-control" id="cnpjCliente" value=""
                                         placeholder="CNPJ">
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <label for="razaoSocial" class="control-label">Razão Social
                                     </label>
                                     <input name="razaoSocial" class="form-control" id="razaoSocial"
-                                        value="{{$clientes->razao_social}}" placeholder="Razão Social">
+                                        value="" placeholder="Razão Social">
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                                 <label for="nomeFantasia" class="control-label">Nome Fantasia
                                 </label>
                                 <input name="nomeFantasia" class="form-control" id="nomeFantasia"
-                                    value="{{$clientes->nome_fantasia}}" placeholder="Nome Fantasia">
+                                    value="" placeholder="Nome Fantasia">
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                                 <label for="dataLimite" class="control-label">Data Limite
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="dataLimite"
-                                            placeholder="dd/mm/yyyy" value="{{ \Carbon\Carbon::parse($clientes->data_limite)->format('Y-m-d') }}">
+                                            placeholder="dd/mm/yyyy" value="">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
@@ -80,6 +80,31 @@
                 </div>
             </div>
         </div>
+
+<!-------------------------------------------------- Modal de Confirmação - Deletar------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------------->   
+     
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Excluir Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja excluir o cliente selecionado ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="deletar-clientes" class="btn btn-primary">Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------->
 
         <div class="panel panel-default">
 
