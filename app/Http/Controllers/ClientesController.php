@@ -38,10 +38,7 @@ class ClientesController extends Controller
 
         return json_encode($clientes);
 
-        //$clientes = $this->clientes->all();
-        
-        //return json_encode($clientes);
-
+      
     }
 
     /**
@@ -62,23 +59,7 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-    //     $dataForm = $request->except('_token');
-
-    //     $guzzle = new Client;
-      
-    //   $result =  $guzzle->POST(env('URL_API').'/cliente',[
-    //         'headers'=> ['Content-Type' => 'application/json'],
-            
-            
-    //         'json' => $dataForm,
-            
-
-    //     ]);
-    //     json_decode($result->getBody());
-
-    // $input = $request->all();
-
-    //     return response()->json(['success'=>'Got Simple Ajax Request.']);
+    
 
 
     $dataForm = $request->except('_token');
@@ -106,16 +87,17 @@ class ClientesController extends Controller
      public function show($id)
     {
         $client = new Client([
-           //'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
-           'base_uri'=> 'http://localhost:8080/',
+           'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
+           //'base_uri'=> 'http://localhost:8080/',
         ]);
 
         $response = $client->request('GET',"clientes/{$id}");
-        $clientes = json_decode( $response->getBody()->getContents());
 
-        return view('clientes.clientes-detail', compact('clientes'));
-        // $clientes = $this->clientes->find($id);
-        // return view('clientes.clientes-detail', compact('clientes'));
+        //dd($response);
+        //$clientes = json_decode( $response->getBody()->getContents());
+
+        return view('clientes.clientes-detail');
+      
     }
 
     /**

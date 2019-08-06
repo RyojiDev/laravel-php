@@ -16,19 +16,14 @@
                             <h5></h5>
 
                             <div class="form-group">
-
+                                    <label for="codEscola">Cód Escola
                                 <div class="form-group">
-                                    <input type="hidden" name="id" class="form-control" id="id"
+                                    <input type="text" name="cod_escola" class="form-control" id="cod_escola"
                                         value="" placeholder="id">
+                                    </label>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="cnpjCliente" class="control-label">CNPJ
-                                    </label>
-                                    <input name="cnpj" pattern="/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/"
- class="form-control" id="cnpjCliente" value=""
-                                        placeholder="CNPJ">
-                                </div>
+                                
                             </div>
                             <div class="form-group">
 
@@ -36,7 +31,7 @@
                                 <div class="form-group">
                                     <label for="razaoSocial" class="control-label">Razão Social
                                     </label>
-                                    <input name="razaoSocial" class="form-control" id="razaoSocial"
+                                    <input name="razaoSocial" class="form-control" id="razao_social_esc"
                                         value="" placeholder="Razão Social">
                                 </div>
                             </div>
@@ -44,26 +39,10 @@
                             <div class="form-group">
                                 <label for="nomeFantasia" class="control-label">Nome Fantasia
                                 </label>
-                                <input name="nomeFantasia" class="form-control" id="nomeFantasia"
+                                <input name="nomeFantasia" class="form-control" id="nome_fantasia_esc"
                                     value="" placeholder="Nome Fantasia">
                             </div>
                         </div>
-
-
-
-                        
-                                <label for="dataLimite" class="control-label">Data Limite
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="dataLimite"
-                                            placeholder="dd/mm/yyyy" value="">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-th"></span>
-                                        </div>
-                                    </div>
-
-
-                            </div>
-                            </label>
                                         
                                 </div>
                             </label>
@@ -75,9 +54,6 @@
                                     <button id="atualizar" type="button" class="btn btn-primary">
                                         <span>Atualizar</span></button></div>
                             </div>
-
-                            <button id="botaoteste">testar</button>
-
                         </div>
                     </form>
                 </div>
@@ -109,39 +85,6 @@
 
 <!----------------------------------------------------------------------------------------------------------------------------->
 
-        
-
-
-<div class="menus-client-col inner-content col" id="contentEscolas">
-   <nav  id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Escolas</a></li>
-    <li><a href="#tabs-2">Menus</a></li>
-    <li><a href="#tabs-3">Outros</a></li>
-  </ul>
-  <div id="tabs-1">
-      <table class="table shadow table-striped table-bordered table-hover">
-          <tr>
-              <th scope="col1">Cód.Escola</th>
-              <th scope="col2">Razão Social</th>
-              <th scope="col3">Nome Fantasia</th>
-                <tbody id="tabela_escolas" >
-
-                </tbody>
-
-          </tr>
-
-      </table>
-  </div>
-  <div id="tabs-2">
-    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. </p>
-  </div>
-  <div id="tabs-3">
-    <p>Mauris eleifend est et turpis.</p>
-    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus.</p>
-  </div>
-</nav >
-</div>
 
 
           

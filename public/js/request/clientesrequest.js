@@ -1,7 +1,12 @@
 $(document).ready(function() {
     console.log("deu certo");
 
+    // var novadata = new Date()
 
+    // var dia = novadata.getDate();
+    // var mes = novadata.getMonth();
+    // var ano = novadata.getFullYear();
+    // novadata = +dia + '/' + (mes++) + '/' + ano;
 
 
 
@@ -55,11 +60,17 @@ $(document).ready(function() {
     // });
 
 
-    $("#salvar").click(function() {
+    $("#salvar").click(function(event) {
+
+
         let cnpj = $("#cnpjCliente").val();
         let razao = $("#razaoSocial").val();
         let nome = $("#nomeFantasia").val();
+
         let data = $("#dataLimite").val();
+
+
+
 
         let selectedClient = {
             'cnpj': cnpj,
@@ -76,13 +87,25 @@ $(document).ready(function() {
         axios
             .post(url + "cliente", selectedClient)
             .then(function(response) {
-                console.log(response);
+
+
+
+                linha = montarLinha(response.data)
+                $("#tabelaClientes").append(linha)
+
+
+
+
+                //$("#tabelaClientes").append(linha)
+
 
             })
             .catch(function(error) {
                 console.log(error);
             });
 
+        event.preventDefault();
+        $("#dlgClientes").modal('hide');
 
     });
 
@@ -172,6 +195,8 @@ $(document).ready(function() {
 
 
 
+
+
     });
 
 
@@ -218,12 +243,22 @@ $(document).ready(function() {
                 response.data.forEach(cliente => {
                     linha = montarLinha(cliente)
                     $("#tabelaClientes").append(linha)
-                    $("#formCliente").submit(function(event) {
-                        event.preventDefault();
-                        criarCliente();
-                        $("#dlgClientes").modal('hide');
-                    })
-                })
+
+
+                });
+
+                $("#formCliente").submit(function(event) {
+
+                    // $("#tabelaClientes").append(linha);
+                    console.log(linha);
+
+                    //criarCliente();
+
+
+
+
+
+                });
 
             })
             .catch(function(error) {
@@ -248,6 +283,8 @@ $(document).ready(function() {
             return linha;
         }
 
+        $("#tabelaClientes").tablesorter();
+
     } else {
         console.log("a url é diferente por isso não executaremos essa instrução");
     }
@@ -263,8 +300,20 @@ $(document).ready(function() {
         .get(url + "clientes" + "/" + id_url)
         .then(function(response) {
             console.log(response);
-            $("#cnpjCliente").val(response.cnpj);
+            $("#id").val(response.data.id);
+            $("#cnpjCliente").val(response.data.cnpj);
+            $("#razaoSocial").val(response.data.razao_social);
+            $("#nomeFantasia").val(response.data.nome_fantasia);
 
+            //$("#dataLimite").val(response.data.data_limite);
+            $("#dataLimite").change(function() {
+                let t = "2019-03-30T15:53:23.106+0000"
+                const date = new Date(t);
+                console.log(date.toLocaleDateString());
+
+
+            });
+            $("#dataLimite").val(new Date(response.data.data_limite).toLocaleDateString());
 
         })
         .catch(function(error) {

@@ -3,26 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 
-
-
-class EscolasController extends Controller
+class EscolaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     
     public function index()
     {
-       
-    
-        //    $escolas = $this->escolas->all();
-        //     return view ('clientes.clientes-detail', compact('escolas'));
-    
+        //
     }
 
     /**
@@ -54,9 +45,7 @@ class EscolasController extends Controller
      */
     public function show($id)
     {
-        
-        // $escolas = $this->escolas->find($id);
-            return view ('escolas.escolas-detail');
+        //
     }
 
     /**

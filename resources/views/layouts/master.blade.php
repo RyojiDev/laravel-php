@@ -11,6 +11,13 @@
 
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
 <link href="{{asset('css/bootstrap-datepicker.css')}}" rel="stylesheet">
+<link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet">
+<!------------------------------ Bootstrap/jquery ----------------------------------------->
+  
+<script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/jquery-ui.min.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/date.js')}}" rel="text/javascript"></script>
+
 
 
 
@@ -32,15 +39,25 @@
     @yield('conteudo-view')
 
 </main>
-   
-<script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
-<script src="{{asset('js/date.js')}}" rel="text/javascript"></script>
+ 
+
+<!---------------------------------- Requisições ------------------------------------------->
+
 <script src="{{asset('js/request/clientesrequest.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/request/escolasrequest.js')}}" rel="text/javascript"></script>
+<!------------------------------------------------------------------------------------------>
+
+<!-------------------------------------=Libs ----------------------------------------------->
+
 <script src="{{asset('js/jquery.validate.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/localization/messages_pt_BR.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/bootstrap-datepicker.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/locales/bootstrap-datepicker.pt-BR.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/data/formatardata.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/jquery.tablesorter.min.js')}}" rel="text/javascript"></script>
+
+
+
 
 
 
