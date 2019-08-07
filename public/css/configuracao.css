@@ -102,7 +102,7 @@
 }
 
 #contentEscolas {
-    width: calc(60% - 250px);
+    width: calc(62% - 250px);
     padding: 80px;
     min-height: 90vh;
     transition: all 0.3s;
@@ -210,4 +210,23 @@ button#visualizarDados {
 #icon {
     width: 50px;
     height: 50px;
+}
+
+#botaoteste {
+    display: none;
+}
+
+#div_cadastrar_escola {
+    background-color: #e9ecef;
+}
+
+#nav_tab_escola {
+    width: 650px;
+    padding: 80px;
+    min-height: 90vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: -50;
+    right: 0;
+    left: -40;
 }

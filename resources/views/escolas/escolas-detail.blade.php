@@ -19,10 +19,9 @@
                                     <label for="codEscola">Cód Escola
                                 <div class="form-group">
                                     <input type="text" name="cod_escola" class="form-control" id="cod_escola"
-                                        value="" placeholder="id">
+                                        value="" placeholder="Cod">
                                     </label>
                                 </div>
-
                                 
                             </div>
                             <div class="form-group">
@@ -35,7 +34,7 @@
                                         value="" placeholder="Razão Social">
                                 </div>
                             </div>
-
+                            
                             <div class="form-group">
                                 <label for="nomeFantasia" class="control-label">Nome Fantasia
                                 </label>
@@ -48,8 +47,8 @@
                             </label>
                             <div class="form-group">
                                 <div class="flex-space-between">
-                                    <button id="deletar" type="button" class="btn btn-danger">
-                                        <span>Remover</span>
+                                    <button id="btn_salvar_cadastro_escola" type="button" class="btn btn-primary">
+                                        <span>Salvar</span>
                                     </button>
                                     <button id="atualizar" type="button" class="btn btn-primary">
                                         <span>Atualizar</span></button></div>

@@ -15,6 +15,7 @@ Route::get('/menu','MenuCadastroController@index');
 Route::get('/clientes-detail', 'ClientesController@indexdetailCliente');
 Route::options('/clientes/destroy/{id}','ClientesController@destroy');
 
+Route::get('/escolas','EscolasController@index');
 Route::get('/escolas/{id}' , 'EscolasController@show');
 
 

@@ -30,6 +30,7 @@ $(document).ready(function() {
 
 
 
+
     //************************************************************ */
     // PEGA OS VALORES - METODO POST
     //************************************************************ */
@@ -247,6 +248,7 @@ $(document).ready(function() {
 
                 });
 
+
                 $("#formCliente").submit(function(event) {
 
                     // $("#tabelaClientes").append(linha);
@@ -259,6 +261,8 @@ $(document).ready(function() {
 
 
                 });
+
+
 
             })
             .catch(function(error) {
@@ -314,11 +318,14 @@ $(document).ready(function() {
 
             });
             $("#dataLimite").val(new Date(response.data.data_limite).toLocaleDateString());
+            $("#titulo_cliente").html(response.data.nome_fantasia);
+            $("#titulo_cliente_span").html(response.data.nome_fantasia);
 
         })
-        .catch(function(error) {
-            console.log(error);
-        });
+
+    .catch(function(error) {
+        console.log(error);
+    });
 
     // function carregarClientes() {
     //     $.getJSON('/api/clientes', function(clientes) {

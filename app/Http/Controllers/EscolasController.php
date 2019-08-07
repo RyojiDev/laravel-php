@@ -21,7 +21,7 @@ class EscolasController extends Controller
        
     
         //    $escolas = $this->escolas->all();
-        //     return view ('clientes.clientes-detail', compact('escolas'));
+        return view ("escolas.escolas-detail");
     
     }
 
