@@ -16,7 +16,7 @@
 
                         <!--------------------------- Tabela de clientes - Retorno Da requisição GET da Api-------->
 
-                        <table class="table shadow table-striped table-bordered table-hover" id="tabelaClientes">
+                        <table class="table shadow table-striped table-bordered table-hover ordena" id="tabelaClientes">
                             <thead>
                                 <tr>
                                     <th scope="col1">ID</th>
@@ -119,8 +119,32 @@
             @endsection 
             
             @section('javascript')
+
             <script type="text/javascript">
-               
+
+
+               function block() {
+
+alert('deu certo');
+$.blockUI({
+
+    message: 'Aguarde...',
+    css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff',
+        'font-size': '16px',
+        'font-weight': 'bold'
+    }
+});
+
+}
+
+block();
             </script>
 
             @endsection

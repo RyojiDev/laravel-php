@@ -74,13 +74,14 @@
 }
 
 #content {
-    width: calc(100% - 250px);
+    width: calc(96.3% - 250px);
     padding: 40px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
     top: 0;
     right: 0;
+    /*background: blue;*/
 }
 
 .nav-tabs {
@@ -110,6 +111,7 @@
     top: 0;
     right: 0;
     background: #f4f4f4;
+    /*background: red;*/
 }
 
 #contentEscolas #inner-content-escolas {
@@ -139,6 +141,9 @@
 #content #inner-content {
     padding: 40px;
     width: 100%;
+    position: relative;
+    bottom: 35px;
+    /*background: green;*/
 }
 
 #tabelaEscolas {
@@ -195,10 +200,12 @@ button#visualizarDados {
 }
 
 #iconeP {
-    position: relative;
-    top: 40px;
-    width: 45px;
-    height: 50px;
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    bottom: 10px;
+    right: 0;
 }
 
 #divTitulo {
@@ -208,8 +215,11 @@ button#visualizarDados {
 }
 
 #icon {
-    width: 50px;
-    height: 50px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 90px;
+    top: 80px;
 }
 
 #botaoteste {
@@ -218,15 +228,77 @@ button#visualizarDados {
 
 #div_cadastrar_escola {
     background-color: #e9ecef;
+    position: relative;
+    width: 545px;
+    right: 22px;
 }
 
 #nav_tab_escola {
-    width: 650px;
+    width: 530px;
     padding: 80px;
     min-height: 90vh;
     transition: all 0.3s;
-    position: absolute;
-    top: -50;
-    right: 0;
-    left: -40;
+    position: fixed;
+    bottom: 63px;
+    right: 40px;
+}
+
+#form_clientes_detail {
+    /*background: purple;*/
+    position: relative;
+    width: 400px;
+    right: 290px;
+    bottom: 30px;
+}
+
+#btn_atualizar_cliente {
+    position: relative;
+    left: 200px;
+}
+
+#tabs {
+    position: relative;
+    bottom: 70px;
+    border: 0px;
+    background: #f4f4f4;
+    width: 550px;
+    right: 90px;
+}
+
+#div_cadastrar_escola #p {
+    position: relative;
+    flex-grow: 1;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    flex: 1;
+    /* If you want to align tab titles center */
+    text-align: center;
+}
+
+.ui-tabs .ui-tabs-nav {
+    display: flex;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    flex: 1;
+    display: flex;
+    /* If placed in a small width sidebar or something like that disabling nowrap will fix the overflow issue */
+    white-space: normal;
+}
+
+.corpo {
+    display: none;
+    background: url('/public/img/big_bg.png');
+}
+
+.carregando {
+    position: fixed;
+    width: 20%;
+    height: 20%;
+    align-content: center;
+    Justify-content: center;
+    align-items: center;
+    left: 520px;
+    top: 200px;
 }

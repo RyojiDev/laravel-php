@@ -12,6 +12,8 @@
 @yield('head')
 <!------------------------------ Bootstrap/jquery ----------------------------------------->
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/configuracao.js')}}" rel="text/javascript"></script>
+
 <script src="{{asset('js/jquery-ui.min.js')}}" rel="text/javascript"></script>
 <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet">
 <link href="{{asset('css/configuracao.css')}}" rel="stylesheet">
@@ -26,10 +28,15 @@
 
 </head>
 
+
 <body>
-<div class="container" id="containerajax">
+<div class="carregando" id="carregando">
+<img src="{{ asset('img/carregando.gif') }}" class="carregando">
 
 </div>
+<div class="corpo" id="corpo">
+
+
 
 
 <main role="main">
@@ -74,7 +81,7 @@
 </div>
 
 
-
+</div>
 </body>
 
 

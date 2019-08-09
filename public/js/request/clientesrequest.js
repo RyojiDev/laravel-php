@@ -34,32 +34,6 @@ $(document).ready(function() {
     //************************************************************ */
     // PEGA OS VALORES - METODO POST
     //************************************************************ */
-    // $("#salvar").click(function() {
-    //     var cnpj = $('#cnpjCliente').val();
-    //     var razao = $('#razaoSocial').val();
-    //     var nome = $('#nomeFantasia').val();
-    //     var data = $('#dataLimite').val();
-    //     var token_key = $('input[name=_token]').val();
-    //     $.ajax({
-    //         type: "POST",
-    //         url: '{{url("/api/clientes")}}',
-    //         data: {
-    //             '_token': token_key,
-    //             'cnpj': cnpj,
-    //             'razao_social': razao,
-    //             'nome_fantasia': nome,
-    //             'data_limite': data,
-    //         },
-    //         success: function(data) {
-    //             alert('in_sucess');
-    //             linha = montarLinha(data);
-    //             $('#tabelaClientes>tbody').append(linha);
-    //             $('#tabelaClientes>tbody').append(linha);
-
-    //         }
-    //     })
-    // });
-
 
     $("#salvar").click(function(event) {
 
@@ -96,10 +70,6 @@ $(document).ready(function() {
 
 
 
-
-                //$("#tabelaClientes").append(linha)
-
-
             })
             .catch(function(error) {
                 console.log(error);
@@ -114,7 +84,7 @@ $(document).ready(function() {
     //Requisição HTTP Axios - UPDATE
     //*******************************************//
 
-    $("#atualizar").click(function() {
+    $("#btn_atualizar_cliente").click(function() {
         let id = $('#id').val();
         let cnpj = $("#cnpjCliente").val();
         let razao = $("#razaoSocial").val();
@@ -153,9 +123,13 @@ $(document).ready(function() {
     //------------Confirmar deletar--------------//
     //*******************************************//
 
-    $("#deletar").click(function() {
+    $("#btn_deletar_cliente").click(function() {
         $("#confirm-delete").modal('show');
     });
+
+
+
+
 
 
 
@@ -287,7 +261,7 @@ $(document).ready(function() {
             return linha;
         }
 
-        $("#tabelaClientes").tablesorter();
+        $(".ordena").tablesorter();
 
     } else {
         console.log("a url é diferente por isso não executaremos essa instrução");
@@ -326,22 +300,6 @@ $(document).ready(function() {
     .catch(function(error) {
         console.log(error);
     });
-
-    // function carregarClientes() {
-    //     $.getJSON('/api/clientes', function(clientes) {
-    //         for (var i = 0; i < clientes.length; i++) {
-    //             console.log(clientes[i])
-    //             linha = montarLinha(clientes[i]);
-    //             $('#tabelaClientes>tbody').append(linha);
-
-    //         }
-    //         $("#formCliente").submit(function(event) {
-    //             event.preventDefault();
-    //             //  criarCliente();
-    //             $("#dlgClientes").modal('hide');
-    //         })
-    //     });
-    // }
 
 
 

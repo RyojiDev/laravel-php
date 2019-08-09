@@ -2,7 +2,7 @@
 
 <div class="main-icon" id = "iconeP">    
 
-<img src="img/icone_300.png" class="css-class" id="icon">
+<img src="{{ asset('img/icone_300.png') }}" id="icon">
 
 
  
@@ -18,7 +18,7 @@
         <a href="/clientes" id="navclientes">    
         <i class="fas fa-address-book"></i>
         <h4><p>Clientes</p></h4>
-        <h6>Visualize, cadastre e edite os<br>clientes do sistema</h6>
+        <h6>Visualizar, cadastrar e editar os<br>clientes do sistema</h6>
         </a>
         
     </li>
@@ -33,7 +33,7 @@
         <a href="#" id="navprincipal">
         <i class="fas fa-sign-out-alt"></i>
                 <h4>Sair</h4>
-                <h6>Desconectar-se do sistema...</h6>
+                <h6>Desconectar-se do sistema</h6>
         </a>
     </li>
 </ul>

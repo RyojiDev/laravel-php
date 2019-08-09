@@ -40,7 +40,7 @@ $(document).ready(function() {
                     "<td><a href='/escolas/" + value['id'] + "'>" + value['codigo_escola'] + "</a></td>" +
                     "<td><a href='/escolas/" + value['id'] + "'>" + value['razao_social'] + "</a></td>" +
                     "<td><a href='/escolas/" + value['id'] + "'>" + value['nome_fantasia'] + "</a></td>" +
-
+                    "<td><button class='btn btn-danger'>" + "<i class='far fa-trash-alt'>" + "</i></button></td>" +
                     "</tr>");
             });
 
@@ -63,11 +63,12 @@ $(document).ready(function() {
         });
 
     $("#btn_cadastrar_escola").click(function() {
-        $(window).attr('location', '/escolas');
-
-
+        $("#cadastrar_escola_cliente").modal('show');
     });
 
+    console.log(url_atual);
+    id_url = url_atual.substring(35, 31);
+    console.log(id_url);
     $("#btn_salvar_cadastro_escola").click(function() {
 
 
@@ -82,13 +83,16 @@ $(document).ready(function() {
         }
 
         axios
-            .post(url + "escolas", selectedClient)
+            .post(url + "escola" + "/" + id_url, selectedClient)
             .then(function(response) {
-
+                console.log(response);
+                $("#tabela_escolas_body").append(response);
             })
             .catch(function(error) {
                 console.log(error);
             });
+
+        return false;
     });
 
 

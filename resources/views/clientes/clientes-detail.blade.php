@@ -7,7 +7,7 @@
     <div id="inner-content">
         <div class="cliente-detail-page">
             <div class="margin0auto h100vh row">
-                <div class="col-menu-client inner-content col-5">
+                <div class="container" id="form_clientes_detail">
 
                     <h3 id="titulo_cliente"></h3>
 
@@ -62,27 +62,28 @@
                                 </div>
                             </div>
 
-
-                </div>
+                            <div class="flex-space-between">
+                    <button id="btn_deletar_cliente" type="button" class="btn btn-danger">
+                        <span>Remover</span>
+                    </button>
+                    <button id="btn_atualizar_cliente" type="button" class="btn btn-primary">
+                        <span>Atualizar</span></button>
+                    </div>
+                
+                        </div>
                 </label>
 
             </div>
             </label>
-            <div class="form-group">
-                <div class="flex-space-between">
-                    <button id="deletar" type="button" class="btn btn-danger">
-                        <span>Remover</span>
-                    </button>
-                    <button id="atualizar" type="button" class="btn btn-primary">
-                        <span>Atualizar</span></button></div>
-            </div>
+            
+                
+            
 
             <button id="botaoteste">testar</button>
 
         </div>
         </form>
     </div>
-</div>
 </div>
 
 <!-------------------------------------------------- Modal de Confirmação - Deletar------------------------------------------->
@@ -113,6 +114,10 @@
         
 
 
+
+<!----------------------------------------------------------------------------------------------------------------------------->
+
+
 <div class="menus-client-col inner-content col" id="contentEscolas">
     <div id="nav_tab_escola">
         <nav id="tabs">
@@ -124,15 +129,15 @@
             <div id="tabs-1">
 
                 <div id="div_cadastrar_escola" class="beauty-jumb jumbotron">
-                    <p>
-                        <h3>Nenhuma escola cadastrada</h1>
-                    </p>
+                    
+                <p><h3>Nenhuma escola cadastrada</h1></p>
+                    
 
-                    <p>
-                        <h4>Clique no botão abaixo para cadastrar a primeira escola para o cliente <span id ="titulo_cliente_span"></span></h2>
+                    
+                <span><h5>Clique no botão abaixo para cadastrar a primeira escola para o cliente <span id ="titulo_cliente_span"></span></h5></span>
                         
-                    </p>
-                    <p><button id="btn_cadastrar_escola" class="btn btn-primary">Cadastrar</button>
+                    
+                    <p><button id="btn_cadastrar_escola" class="btn btn-primary">Cadastrar</button></p>
 
                 </div>
 
@@ -160,6 +165,62 @@
         </nav>
     </div>
 </div>
+
+<!-------------------------------------------------- Modal Salvar Escolas------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------------->   
+     
+<div class="modal fade" id="cadastrar_escola_cliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cadastrar Escola</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCliente" class="form-horizontal" id="formCliente">
+                    <div class="modal-body">
+                        <input type="hidden" id="id" class="form-control">
+                        <div class="form-group">
+                            <label for="cod_escola" class="control-label">Cod. Escola
+                            </label>
+                            <div class="input-group">
+                                <input type="text" required="required" name="numbers" pattern="[0-9]+$"
+                                    class="form-control" id="cod_escola" name="cod_escola" placeholder="Cod.Escola">
+                            </div>
+                            <label for="nomeCliente" class="control-label">Razão Social
+                            </label>
+                            <input type="text" class="form-control" id="razao_social_esc" name="razao_social_esc"
+                                placeholder="Razão Social">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="nomeFantasia" class="control-label">Nome Fantasia
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nome_fantasia_esc" name="razao_social_esc"
+                                    placeholder="Nome Fantasia">
+                            </div>
+                            <br>
+                            
+
+
+                            </div>
+                            </label>
+                            <div class="modal-footer">
+                                <button id="btn_salvar_cadastro_escola" type="submit" class="btn btn-success">Salvar</button>
+                                <button type="cancel" class="btn btn-secondary" data-dismiss="modal">
+                                    Cancelar</button>
+                            </div>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 
           
