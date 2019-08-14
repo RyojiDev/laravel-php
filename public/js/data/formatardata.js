@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 
     $("#dataLimite").datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'dd/mm/yyyy',
         language: 'pt-BR',
 
     });

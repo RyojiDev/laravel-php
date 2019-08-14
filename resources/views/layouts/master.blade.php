@@ -12,9 +12,10 @@
 @yield('head')
 <!------------------------------ Bootstrap/jquery ----------------------------------------->
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/jquery.blockUI.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/configuracao.js')}}" rel="text/javascript"></script>
 
-<script src="{{asset('js/jquery-ui.min.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/jquery-ui.js')}}" rel="text/javascript"></script>
 <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet">
 <link href="{{asset('css/configuracao.css')}}" rel="stylesheet">
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
@@ -30,10 +31,10 @@
 
 
 <body>
-<div class="carregando" id="carregando">
+<!---<div class="carregando" id="carregando">
 <img src="{{ asset('img/carregando.gif') }}" class="carregando">
 
-</div>
+</div>-->
 <div class="corpo" id="corpo">
 
 
@@ -55,10 +56,20 @@
 <script src="{{asset('js/request/escolasrequest.js')}}" rel="text/javascript"></script>
 <!------------------------------------------------------------------------------------------>
 
+<!---------------------------------- Requisições ------------------------------------------->
+
+<script src="{{asset('js/validator/cliente_validate.js')}}" rel="text/javascript"></script>
+
+<!------------------------------------------------------------------------------------------>
+
 <!-------------------------------------=Libs ----------------------------------------------->
 
 <script src="{{asset('js/jquery.validate.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/localization/messages_pt_BR.min.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/data/moment.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/locales/moment-with-locales.js')}}" rel="text/javascript"></script>
+
+
 <script src="{{asset('js/bootstrap-datepicker.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/locales/bootstrap-datepicker.pt-BR.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/data/formatardata.js')}}" rel="text/javascript"></script>

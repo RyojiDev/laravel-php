@@ -71,12 +71,12 @@
                             <label for="cnpjCliente" class="control-label">CNPJ
                             </label>
                             <div class="input-group">
-                                <input type="text" required="required" name="numbers" pattern="[0-9]+$"
+                                <input required type="text"  name="numbers"
                                     class="form-control" id="cnpjCliente" name="cnpjCliente" placeholder="CNPJ">
                             </div>
                             <label for="nomeCliente" class="control-label">Razão Social
                             </label>
-                            <input type="text" class="form-control" id="razaoSocial" name="razaoSocial"
+                            <input required type="text" class="form-control" id="razaoSocial" name="razaoSocial"
                                 placeholder="Razão Social">
                         </div>
 
@@ -85,14 +85,14 @@
                             <label for="nomeFantasia" class="control-label">Nome Fantasia
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia"
+                                <input required type="text" class="form-control" id="nomeFantasia" name="nomeFantasia"
                                     placeholder="Nome Fantasia">
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="dataLimite" class="control-label">Data Limite
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" id="dataLimite"
+                                        <input required type="text" class="form-control" id="dataLimite"
                                             placeholder="dd/mm/yyyy">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
@@ -123,28 +123,8 @@
             <script type="text/javascript">
 
 
-               function block() {
+              
 
-alert('deu certo');
-$.blockUI({
-
-    message: 'Aguarde...',
-    css: {
-        border: 'none',
-        padding: '15px',
-        backgroundColor: '#000',
-        '-webkit-border-radius': '10px',
-        '-moz-border-radius': '10px',
-        opacity: .5,
-        color: '#fff',
-        'font-size': '16px',
-        'font-weight': 'bold'
-    }
-});
-
-}
-
-block();
             </script>
 
             @endsection

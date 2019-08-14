@@ -1,6 +1,8 @@
 $(document).ready(function() {
     console.log("deu certo");
 
+    var el = $('body');
+    console.log(el);
     // var novadata = new Date()
 
     // var dia = novadata.getDate();
@@ -25,6 +27,8 @@ $(document).ready(function() {
 
     const url_atual_clientes = '/clientes';
 
+
+
     console.log(url_clientes);
 
 
@@ -37,47 +41,57 @@ $(document).ready(function() {
 
     $("#salvar").click(function(event) {
 
+        var verificar_cnpj = $("#cnpjCliente").val();
 
-        let cnpj = $("#cnpjCliente").val();
-        let razao = $("#razaoSocial").val();
-        let nome = $("#nomeFantasia").val();
+        if (verificarCnpj(verificar_cnpj) == false) {
+            aplicarCampoInvalido($("#cnpjCliente"));
+            return false;
 
-        let data = $("#dataLimite").val();
+        } else {
+            alert("as condições foram atendidas para salvar");
+            let cnpj = $("#cnpjCliente").val();
+            let razao = $("#razaoSocial").val();
+            let nome = $("#nomeFantasia").val();
+
+            let data = $("#dataLimite").val();
+            data = data.split('/').reverse().join('-');
 
 
 
+            let selectedClient = {
+                'cnpj': cnpj,
+                'data_limite': data,
+                'nome_fantasia': nome,
+                'razao_social': razao,
 
-        let selectedClient = {
-            'cnpj': cnpj,
-            'data_limite': data,
-            'nome_fantasia': nome,
-            'razao_social': razao,
 
+
+            }
+
+
+
+            axios
+                .post(url + "cliente", selectedClient)
+                .then(function(response) {
+
+
+
+                    linha = montarLinha(response.data)
+                    $("#tabelaClientes").append(linha)
+
+
+
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+
+
+            $("#dlgClientes").modal('hide');
 
 
         }
-
-
-
-        axios
-            .post(url + "cliente", selectedClient)
-            .then(function(response) {
-
-
-
-                linha = montarLinha(response.data)
-                $("#tabelaClientes").append(linha)
-
-
-
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-
-        event.preventDefault();
-        $("#dlgClientes").modal('hide');
-
+        return false;
     });
 
     //*******************************************//
@@ -90,6 +104,7 @@ $(document).ready(function() {
         let razao = $("#razaoSocial").val();
         let nome = $("#nomeFantasia").val();
         let data = $("#dataLimite").val();
+        data = data.split('/').reverse().join('-');
 
         let selectedClient = {
             'id': id,
@@ -100,15 +115,7 @@ $(document).ready(function() {
         }
 
         axios
-            .put(url + "cliente", {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                    "Access-Control-Allow-Header": "x-requested-with",
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: selectedClient
-            })
+            .put(url + "cliente", selectedClient)
             .then(function(response) {
                 console.log(response);
             })
@@ -124,7 +131,7 @@ $(document).ready(function() {
     //*******************************************//
 
     $("#btn_deletar_cliente").click(function() {
-        $("#confirm-delete").modal('show');
+        $("#confirm_delete_cliente").modal('show');
     });
 
 

@@ -37,10 +37,10 @@ $(document).ready(function() {
             $.each(response.data.escolas, function(key, value) {
 
                 $("#tabela_escolas_body").append("<tr>" +
-                    "<td><a href='/escolas/" + value['id'] + "'>" + value['codigo_escola'] + "</a></td>" +
-                    "<td><a href='/escolas/" + value['id'] + "'>" + value['razao_social'] + "</a></td>" +
-                    "<td><a href='/escolas/" + value['id'] + "'>" + value['nome_fantasia'] + "</a></td>" +
-                    "<td><button class='btn btn-danger'>" + "<i class='far fa-trash-alt'>" + "</i></button></td>" +
+                    "<td data-name='cod_esc'><a href='/escolas/" + value['id'] + "'>" + value['codigo_escola'] + "</a></td>" +
+                    "<td data-name='razao_social'><a href='/escolas/" + value['id'] + "'>" + value['razao_social'] + "</a></td>" +
+                    "<td data-name='nome_fantasia'><a href='/escolas/" + value['id'] + "'>" + value['nome_fantasia'] + "</a></td>" +
+                    "<td><button class='btn btn-danger deletar_escolas' data-id='" + value['id'] + "'>" + "<i class='far fa-trash-alt' >" + "</i></button></td>" +
                     "</tr>");
             });
 
@@ -62,7 +62,7 @@ $(document).ready(function() {
             console.log(error);
         });
 
-    $("#btn_cadastrar_escola").click(function() {
+    $(".btn_cadastrar_escola").click(function() {
         $("#cadastrar_escola_cliente").modal('show');
     });
 
@@ -86,21 +86,66 @@ $(document).ready(function() {
             .post(url + "escola" + "/" + id_url, selectedClient)
             .then(function(response) {
                 console.log(response);
-                $("#tabela_escolas_body").append(response);
+
             })
             .catch(function(error) {
                 console.log(error);
             });
+        $("#div_cadastrar_escola").hide();
+        $("#tabela_escola").show();
 
+
+
+        $("#cadastrar_escola_cliente").modal('hide');
         return false;
     });
 
 
+    $("#btn_adicionar_escola_fixo").click(function(event) {
+
+        return false;
 
 
-    cod_escola
-    razao_social_esc
-    nome_fantasia_esc
+    });
+
+
+
+    $(document).on('click', '.deletar_escolas', function(e) {
+
+        $("#confirm_delete_escolas").modal('show');
+        let element = $(this);
+        $("#deletar-escolas").click(function() {
+
+
+
+            let id = element.attr('data-id');
+
+            axios.delete(url + "escola", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": '*'
+                    },
+                    data: {
+                        "id": id,
+                        "codigo_escola": "",
+                        "razao_social": "",
+                        "nome_fantasia": ""
+                    }
+                })
+                .then(function(response) {
+                    console.log(response);
+                    // REMOVEU
+                    $(".confirm-delete").modal('hide');
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        });
+
+    });
+
+
+
     //------------------------------------listar - update -----------------------//
 
     // var url_atual = window.location.href;
@@ -120,4 +165,6 @@ $(document).ready(function() {
     //     .catch(function(error) {
     //         console.log(error);
     //     });
+
+
 });

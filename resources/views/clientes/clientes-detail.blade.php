@@ -27,8 +27,7 @@
                                     <label for="cnpjCliente" class="control-label">CNPJ
                                     </label>
                                     <input name="cnpj"
-                                        pattern="/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/"
-                                        class="form-control" id="cnpjCliente" value="" placeholder="CNPJ">
+                                    pattern= "\d{3}\.\d{3}\.\d{3}-\d{2}" class="form-control" id="cnpjCliente" value="" placeholder="CNPJ">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -78,18 +77,17 @@
             
                 
             
-
-            <button id="botaoteste">testar</button>
+            <button class="btn btn-primary btn_cadastrar_escola" id="btn_adicionar_escola_fixo"><i class="fas fa-plus-circle "></i></button>
 
         </div>
         </form>
     </div>
 </div>
 
-<!-------------------------------------------------- Modal de Confirmação - Deletar------------------------------------------->
+<!----------------------------------------- Modal de Confirmação - Deletar Clientes------------------------------------------->
 <!---------------------------------------------------------------------------------------------------------------------------->   
      
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade " id="confirm_delete_cliente"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -111,7 +109,30 @@
 
 <!----------------------------------------------------------------------------------------------------------------------------->
 
-        
+<!----------------------------------------- Modal de Confirmação - Deletar Escolas------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------------->   
+     
+<div class="modal fade " id="confirm_delete_escolas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Excluir Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja excluir o cliente selecionado ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="deletar-escolas" class="btn btn-danger">Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------->        
 
 
 
@@ -127,21 +148,8 @@
                 <li><a href="#tabs-3">Outros</a></li>
             </ul>
             <div id="tabs-1">
-
-                <div id="div_cadastrar_escola" class="beauty-jumb jumbotron">
-                    
-                <p><h3>Nenhuma escola cadastrada</h1></p>
-                    
-
-                    
-                <span><h5>Clique no botão abaixo para cadastrar a primeira escola para o cliente <span id ="titulo_cliente_span"></span></h5></span>
-                        
-                    
-                    <p><button id="btn_cadastrar_escola" class="btn btn-primary">Cadastrar</button></p>
-
-                </div>
-
-                <table class="table shadow table-striped table-bordered table-hover" id="tabela_escola">
+    <div id="div_tabela_escola">
+            <table class="table shadow table-striped table-bordered table-hover" id="tabela_escola">
                     <tr>
                         <th scope="col1">Cód.Escola</th>
                         <th scope="col2">Razão Social</th>
@@ -153,6 +161,21 @@
                     </tr>
 
                 </table>
+                </div>
+                <div id="div_cadastrar_escola" class="beauty-jumb jumbotron">
+                    
+                <p><h3>Nenhuma escola cadastrada</h1></p>
+                    
+
+                    
+                <span><h5>Clique no botão abaixo para cadastrar a primeira escola para o cliente <span id ="titulo_cliente_span"></span></h5></span>
+                        
+                    
+                    <p><button id="btn_cadastrar_escola" class="btn btn-primary btn_cadastrar_escola">Cadastrar</button></p>
+
+                </div>
+
+                
             </div>
             <div id="tabs-2">
                 <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id
@@ -253,7 +276,7 @@ $("#botaoteste").click(function(){
 
    
     
-
+   
       
                 
 

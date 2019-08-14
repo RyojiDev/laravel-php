@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
 #principal {
     position: fixed;
     float: left;
@@ -105,12 +111,15 @@
 #contentEscolas {
     width: calc(62% - 250px);
     padding: 80px;
-    min-height: 90vh;
+    height: 100%;
+    min-height: 100%;
     transition: all 0.3s;
     position: absolute;
     top: 0;
     right: 0;
     background: #f4f4f4;
+    display: block;
+    margin-top: auto;
     /*background: red;*/
 }
 
@@ -228,9 +237,13 @@ button#visualizarDados {
 
 #div_cadastrar_escola {
     background-color: #e9ecef;
-    position: relative;
+    position: absolute;
     width: 545px;
     right: 22px;
+    top: 60px;
+    left: 5px;
+    display: block;
+    margin-bottom: -190;
 }
 
 #nav_tab_escola {
@@ -238,7 +251,7 @@ button#visualizarDados {
     padding: 80px;
     min-height: 90vh;
     transition: all 0.3s;
-    position: fixed;
+    position: static;
     bottom: 63px;
     right: 40px;
 }
@@ -257,12 +270,16 @@ button#visualizarDados {
 }
 
 #tabs {
-    position: relative;
-    bottom: 70px;
+    position: absolute;
     border: 0px;
     background: #f4f4f4;
     width: 550px;
-    right: 90px;
+    right: 0px;
+    left: 5px;
+    top: 0;
+    display: block;
+    z-index: 10;
+    margin-bottom: 220px;
 }
 
 #div_cadastrar_escola #p {
@@ -292,7 +309,8 @@ button#visualizarDados {
     background: url('/public/img/big_bg.png');
 }
 
-.carregando {
+
+/*.carregando {
     position: fixed;
     width: 20%;
     height: 20%;
@@ -301,4 +319,26 @@ button#visualizarDados {
     align-items: center;
     left: 520px;
     top: 200px;
+}*/
+
+#botaoteste {
+    position: fixed;
+    display: block;
+}
+
+#div_tabela_escola {
+    position: static;
+    bottom: 350px;
+    display: block;
+    margin-bottom: -350px;
+}
+
+#btn_adicionar_escola_fixo {
+    display: block;
+    position: fixed;
+    font-size: 40px;
+    margin-left: auto;
+    margin-top: 100px;
+    right: 40px;
+    z-index: 20;
 }
