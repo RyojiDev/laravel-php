@@ -32,7 +32,9 @@ $(document).ready(function() {
     console.log(url_clientes);
 
 
-
+    $("#dlgClientes").submit(function(e) {
+        e.preventDefault()
+    });
 
 
     //************************************************************ */
@@ -40,14 +42,16 @@ $(document).ready(function() {
     //************************************************************ */
 
     $("#salvar").click(function(event) {
-
         var verificar_cnpj = $("#cnpjCliente").val();
 
         if (verificarCnpj(verificar_cnpj) == false) {
             aplicarCampoInvalido($("#cnpjCliente"));
             return false;
 
+            
+
         } else {
+
             alert("as condições foram atendidas para salvar");
             let cnpj = $("#cnpjCliente").val();
             let razao = $("#razaoSocial").val();
@@ -55,6 +59,8 @@ $(document).ready(function() {
 
             let data = $("#dataLimite").val();
             data = data.split('/').reverse().join('-');
+            cnpj = cnpj.replace(/[^\d]+/g, "");
+
 
 
 

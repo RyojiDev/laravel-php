@@ -71,8 +71,8 @@
                             <label for="cnpjCliente" class="control-label">CNPJ
                             </label>
                             <div class="input-group">
-                                <input required type="text"  name="numbers"
-                                    class="form-control" id="cnpjCliente" name="cnpjCliente" placeholder="CNPJ">
+                                <input required type="text"
+                                    class="form-control" id="cnpjCliente" name="cnpjCliente" placeholder="00.000.000/0000-00">
                             </div>
                             <label for="nomeCliente" class="control-label">Razão Social
                             </label>

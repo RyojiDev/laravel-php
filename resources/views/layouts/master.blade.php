@@ -14,7 +14,7 @@
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/jquery.blockUI.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/configuracao.js')}}" rel="text/javascript"></script>
-
+<script src="{{asset('js/jquery.mask.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/jquery-ui.js')}}" rel="text/javascript"></script>
 <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet">
 <link href="{{asset('css/configuracao.css')}}" rel="stylesheet">
