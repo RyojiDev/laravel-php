@@ -12,7 +12,9 @@
 @yield('head')
 <!------------------------------ Bootstrap/jquery ----------------------------------------->
 <script src="{{asset('js/app.js')}}" rel="text/javascript"></script>
+<link href="{{asset('css/jquery.growl.css')}}" rel="stylesheet">
 <script src="{{asset('js/jquery.blockUI.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/jquery.growl.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/configuracao.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/jquery.mask.min.js')}}" rel="text/javascript"></script>
 <script src="{{asset('js/jquery-ui.js')}}" rel="text/javascript"></script>
@@ -31,10 +33,15 @@
 
 
 <body>
+
+<img src="{{ asset('img/big_bg.png') }}" id="background">
+
 <!---<div class="carregando" id="carregando">
 <img src="{{ asset('img/carregando.gif') }}" class="carregando">
 
 </div>-->
+
+
 <div class="corpo" id="corpo">
 
 
@@ -58,7 +65,7 @@
 
 <!---------------------------------- Requisições ------------------------------------------->
 
-<script src="{{asset('js/validator/cliente_validate.js')}}" rel="text/javascript"></script>
+<script src="{{asset('js/validator/util.js')}}" rel="text/javascript"></script>
 
 <!------------------------------------------------------------------------------------------>
 
@@ -93,6 +100,7 @@
 
 
 </div>
+
 </body>
 
 

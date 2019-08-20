@@ -48,7 +48,7 @@ $(document).ready(function() {
             aplicarCampoInvalido($("#cnpjCliente"));
             return false;
 
-            
+
 
         } else {
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
                 .then(function(response) {
 
 
-
+                    $.growl.notice({ message: "Cliente Salvo Com sucesso!" });
                     linha = montarLinha(response.data)
                     $("#tabelaClientes").append(linha)
 
@@ -90,6 +90,7 @@ $(document).ready(function() {
                 })
                 .catch(function(error) {
                     console.log(error);
+                    $.growl.warning({ message: "Erro ao adicionar Cliente, por favor verifique os dados e tente novamente" });
                 });
 
 
@@ -111,6 +112,8 @@ $(document).ready(function() {
         let nome = $("#nomeFantasia").val();
         let data = $("#dataLimite").val();
         data = data.split('/').reverse().join('-');
+        cnpj = cnpj.replace(/[^\d]+/g, "");
+
 
         let selectedClient = {
             'id': id,
@@ -123,6 +126,7 @@ $(document).ready(function() {
         axios
             .put(url + "cliente", selectedClient)
             .then(function(response) {
+                $.growl.notice({ message: "Cliente Alterado Com sucesso!" });
                 console.log(response);
             })
             .catch(function(error) {
@@ -177,6 +181,8 @@ $(document).ready(function() {
             })
             .catch(function(error) {
                 console.log(error);
+                $.growl.warning({ message: "Erro ao deletar Cliente, se houver escola associada ao cliente, remova elas primeiro" });
+
 
             });
 
@@ -348,15 +354,15 @@ $(document).ready(function() {
 
     });
 
-    $("#formCliente").validate({
-        rules: {
-            required: true,
-            cnpjCliente: {
-                maxLength: 20,
-                minLength: 10
-            }
-        }
-    });
+    // $("#formCliente").validate({
+    //     rules: {
+    //         required: true,
+    //         cnpjCliente: {
+    //             maxLength: 20,
+    //             minLength: 10
+    //         }
+    //     }
+    // });
 
     function validarForm() {
 

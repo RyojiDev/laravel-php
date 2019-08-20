@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 
+
     // $(window).on('load', function() {
     //     this.document.getElementById("carregando").style.display = "none";
     // });
@@ -38,6 +39,7 @@ $(document).ready(function() {
     }
 
     block();
+
 
     var intervalo = setInterval(function() {
             clearInterval(intervalo);

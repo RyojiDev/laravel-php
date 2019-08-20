@@ -27,7 +27,7 @@
                                     <label for="cnpjCliente" class="control-label">CNPJ
                                     </label>
                                     <input name="cnpj"
-                                    pattern= "\d{3}\.\d{3}\.\d{3}-\d{2}" class="form-control" id="cnpjCliente" value="" placeholder="CNPJ">
+                                     class="form-control" id="cnpjCliente" value="" placeholder="CNPJ">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -116,6 +116,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+      <input type="hidden" name="id" class="form-control" id="tr_id" value="">
+
         <h5 class="modal-title">Excluir Item</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -209,12 +211,12 @@
                             <label for="cod_escola" class="control-label">Cod. Escola
                             </label>
                             <div class="input-group">
-                                <input type="text" required="required" name="numbers" pattern="[0-9]+$"
+                                <input required type="number" required="required" name="numbers" 
                                     class="form-control" id="cod_escola" name="cod_escola" placeholder="Cod.Escola">
                             </div>
                             <label for="nomeCliente" class="control-label">Razão Social
                             </label>
-                            <input type="text" class="form-control" id="razao_social_esc" name="razao_social_esc"
+                            <input required type="text" class="form-control" id="razao_social_esc" name="razao_social_esc"
                                 placeholder="Razão Social">
                         </div>
 
@@ -223,7 +225,7 @@
                             <label for="nomeFantasia" class="control-label">Nome Fantasia
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="nome_fantasia_esc" name="razao_social_esc"
+                                <input required type="text" class="form-control" id="nome_fantasia_esc" name="razao_social_esc"
                                     placeholder="Nome Fantasia">
                             </div>
                             <br>
