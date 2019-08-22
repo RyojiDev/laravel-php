@@ -21,15 +21,16 @@ $(document).ready(function() {
     const url = 'http://172.16.0.198:8080/gestor_api/';
     //const url = 'http://localhost:8080/';
 
-    var url_atual = window.location.href;
-    console.log(url_atual);
-    url_clientes = url_atual.substring(32, 21);
+    // var url_atual = window.location.href;
+    // console.log(url_atual);
+    // url_clientes = url_atual.substring(32, 21);
 
-    const url_atual_clientes = '/clientes';
+    // const url_atual_clientes = '/clientes';
+
+    var id_cliente = $("#cliente_id").val()
 
 
-
-    console.log(url_clientes);
+    // 
 
 
     $("#dlgClientes").submit(function(e) {
@@ -45,7 +46,6 @@ $(document).ready(function() {
         var verificar_cnpj = $("#cnpjCliente").val();
 
         if (verificarCnpj(verificar_cnpj) == false) {
-            aplicarCampoInvalido($("#cnpjCliente"));
             return false;
 
 
@@ -106,7 +106,7 @@ $(document).ready(function() {
     //*******************************************//
 
     $("#btn_atualizar_cliente").click(function() {
-        let id = $('#id').val();
+        let id = $('#cliente_id').val();
         let cnpj = $("#cnpjCliente").val();
         let razao = $("#razaoSocial").val();
         let nome = $("#nomeFantasia").val();
@@ -155,7 +155,7 @@ $(document).ready(function() {
     //*******************************************//
     $("#deletar-clientes").click(function() {
         console.log("oi cheguei");
-        let id = $('#id').val();
+        let id = $('#cliente_id').val();
 
         let selectedClient = {
             'id': id,
@@ -227,77 +227,79 @@ $(document).ready(function() {
     //*******************************************//
     // CASO HOUVER CLIENTES, MONTA A LINHA COM OS DADOS
     //*******************************************//
-    if (url_atual_clientes == url_clientes) {
 
 
-        axios
-            .get(url + "clientes")
-            .then(function(response) {
-                console.log(response);
-                response.data.forEach(cliente => {
-                    linha = montarLinha(cliente)
-                    $("#tabelaClientes").append(linha)
-
-
-                });
-
-
-                $("#formCliente").submit(function(event) {
-
-                    // $("#tabelaClientes").append(linha);
-                    console.log(linha);
-
-                    //criarCliente();
-
-
-
-
-
-                });
-
-
-
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-
-        function montarLinha(response) {
-            let t = "2019-03-30T15:53:23.106+0000"
-            const date = new Date(t);
-            console.log(date.toLocaleDateString());
-            var linha = "<tr>" +
-                "<td><a href='/clientes/" + response.id + "'>" + response.id + "</a></td>" +
-                "<td><a href='/clientes/" + response.id + "'>" + response.cnpj + "</td>" +
-                "<td><a href='/clientes/" + response.id + "'>" + response.razao_social + "</td>" +
-                "<td><a href='/clientes/" + response.id + "'>" + response.nome_fantasia + "</td>" +
-                "<td>" + new Date(response.data_limite).toLocaleDateString(); +
-            "</td>" +
-
-            "</td>" +
-            "</tr>";
-
-            return linha;
-        }
-
-        $(".ordena").tablesorter();
-
-    } else {
-        console.log("a url é diferente por isso não executaremos essa instrução");
-    }
-
-
-
-    var url_atual = window.location.href;
-    console.log(url_atual);
-    id_url = url_atual.substring(35, 31);
-    console.log(id_url);
 
     axios
-        .get(url + "clientes" + "/" + id_url)
+        .get(url + "clientes")
         .then(function(response) {
             console.log(response);
-            $("#id").val(response.data.id);
+            response.data.forEach(cliente => {
+                linha = montarLinha(cliente)
+                $("#tabelaClientes").append(linha)
+
+
+            });
+
+
+            $("#formCliente").submit(function(event) {
+
+                // $("#tabelaClientes").append(linha);
+                console.log(linha);
+
+                //criarCliente();
+
+
+
+
+
+            });
+
+
+
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+    function montarLinha(response) {
+        let t = "2019-03-30T15:53:23.106+0000"
+        const date = new Date(t);
+        console.log(date.toLocaleDateString());
+        var linha = "<tr>" +
+            "<td><a href='/clientes/" + response.id + "'>" + response.id + "</a></td>" +
+            "<td><a href='/clientes/" + response.id + "'>" + response.cnpj + "</td>" +
+            "<td><a href='/clientes/" + response.id + "'>" + response.razao_social + "</td>" +
+            "<td><a href='/clientes/" + response.id + "'>" + response.nome_fantasia + "</td>" +
+            "<td>" + new Date(response.data_limite).toLocaleDateString(); +
+        "</td>" +
+
+        "</td>" +
+        "</tr>";
+
+        return linha;
+    }
+
+    $(".ordena").tablesorter();
+
+
+    console.log("a url é diferente por isso não executaremos essa instrução");
+
+
+
+
+    // var url_atual = window.location.href;
+    // console.log(url_atual);
+    // id_url = url_atual.substring(35, 31);
+    // console.log(id_url);
+
+
+    console.log(id_cliente);
+    axios
+        .get(url + "clientes" + "/" + id_cliente)
+        .then(function(response) {
+            console.log(response);
+            // $("#cliente_id").val(response.data.id);
             $("#cnpjCliente").val(response.data.cnpj);
             $("#razaoSocial").val(response.data.razao_social);
             $("#nomeFantasia").val(response.data.nome_fantasia);

@@ -19,7 +19,7 @@
                             <div class="form-group">
 
                                 <div class="form-group">
-                                    <input type="hidden" name="id" class="form-control" id="id" value=""
+                                    <input type="hidden" name="id" class="form-control" id="cliente_id" value="{{$uri_clientes_id}}"
                                         placeholder="id">
                                 </div>
 

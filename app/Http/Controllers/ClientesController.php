@@ -26,17 +26,20 @@ class ClientesController extends Controller
     public function indexView()
     {
 
-        $clientes = $this->clientes->all();
+        // $clientes = $this->clientes->all();
 
-        return view('clientes.clientes', compact('clientes'));
+        
+        // return view('clientes.clientes', compact('clientes'));
+                return view('clientes.clientes');
+
 
     }
     public function index()
     {
 
-        $clientes = $this->clientes->all();
+        // $clientes = $this->clientes->all();
 
-        return json_encode($clientes);
+        // return json_encode($clientes);
 
       
     }
@@ -62,17 +65,17 @@ class ClientesController extends Controller
     
 
 
-    $dataForm = $request->except('_token');
+    // $dataForm = $request->except('_token');
 
-    $guzzle = new Client;
+    // $guzzle = new Client;
 
-    $result = $guzzle->POST(env('URL_API').'/cliente',[
-        'headers'=> ['Content-Type' => 'application/json'],
+    // $result = $guzzle->POST(env('URL_API').'/cliente',[
+    //     'headers'=> ['Content-Type' => 'application/json'],
 
-        'json' => $dataForm,
-    ]);
-    //dd(json_decode($result->getbody()));
-    return redirect()->action('ClientesController@indexView');
+    //     'json' => $dataForm,
+    // ]);
+    // //dd(json_decode($result->getbody()));
+    // return redirect()->action('ClientesController@indexView');
     }
         
         
@@ -86,17 +89,18 @@ class ClientesController extends Controller
     
      public function show($id)
     {
-        $client = new Client([
-           'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
-           //'base_uri'=> 'http://localhost:8080/',
-        ]);
+        // $client = new Client([
+        //    'base_uri'=> 'http://172.16.0.198:8080/gestor_api/',
+        //    //'base_uri'=> 'http://localhost:8080/',
+        // ]);
 
-        $response = $client->request('GET',"clientes/{$id}");
+        // $response = $client->request('GET',"clientes/{$id}");
 
         //dd($response);
         //$clientes = json_decode( $response->getBody()->getContents());
 
-        return view('clientes.clientes-detail');
+        $uri_clientes_id = request()->segment(2);
+        return view('clientes.clientes-detail', compact('uri_clientes_id'));
       
     }
 

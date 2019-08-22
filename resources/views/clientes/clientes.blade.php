@@ -28,20 +28,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-----@foreach ($clientes as $clientes)
-        <tr>
-
-        <td button="text" onClick="novoCliente()">{{ $clientes->cnpj }}</td>
-        <td  button="text" onClick="novoCliente()"> {{$clientes->razao_social}}</td>
-        <td  button="text" onClick="novoCliente()">{{$clientes->nome_fantasia}}</td>
-        <td  button="text" onClick="novoCliente()">{{$clientes->data_limite}}</td>
-
-        </tr>
-       --->
+                               
 
 
                             </tbody>
-                            <!--@endforeach-->
+                          
                         </table>
                         <div>
 

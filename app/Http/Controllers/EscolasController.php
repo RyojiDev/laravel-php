@@ -52,11 +52,15 @@ class EscolasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$cliente)
     {
         
         // $escolas = $this->escolas->find($id);
-            return view ('escolas.escolas-detail');
+
+        $uri_escolas = request()->segment(2);
+       $uri_clientes = request()->segment(3);
+
+            return view ('escolas.escolas-detail',compact('uri_escolas','uri_clientes'));
     }
 
     /**

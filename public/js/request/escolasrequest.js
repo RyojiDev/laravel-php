@@ -5,13 +5,14 @@ $(document).ready(function() {
     var url_atual = window.location.href;
     console.log(url_atual);
     id_url = url_atual.substring(35, 31);
-    console.log(id_url);
+    console.log(`estamos na url ${id_url}`);
 
+    var id_cliente = $("#cliente_id").val()
 
 
 
     axios
-        .get(url + "clientes" + "/" + id_url)
+        .get(url + "clientes" + "/" + id_cliente)
         .then(function(response) {
             console.log(response);
             //console.log(response.data.escolas["0"].codigo_escola);
@@ -70,6 +71,9 @@ $(document).ready(function() {
     });
 
     $(".btn_cadastrar_escola").click(function() {
+        $("#cod_escola").val("");
+        $("#razao_social_esc").val("");
+        $("#nome_fantasia_esc").val("");
         $("#cadastrar_escola_cliente").modal('show');
     });
 
@@ -81,22 +85,12 @@ $(document).ready(function() {
 
     $("#btn_salvar_cadastro_escola").click(function() {
 
-        let cod_escola = $("#cod_escola").val();
-        let razao_social_esc = $("#razao_social_esc").val();
-        let nome_fantasia_esc = $("#nome_fantasia_esc").val();
-
-        if (validar_escolas(cod_escola) == false) {
-
-            alert("false");
-
-        } else if (validar_escolas(razao_social_esc) == false) {
-            alert("false");
-
-        } else if (validar_escolas(nome_fantasia_esc) == false) {
+        if (validar_escolas() == false) {
+            $.growl.warning({ message: "erro ao adicionar escola, por favor verifique seus dados" });
+            verifica_validacao();
 
 
-
-            alert("false");
+            return false;
         } else {
             let cod_escola = $("#cod_escola").val();
             let razao_social_esc = $("#razao_social_esc").val();
@@ -109,7 +103,7 @@ $(document).ready(function() {
             }
 
             axios
-                .post(url + "escola" + "/" + id_url, selectedClient)
+                .post(url + "escola" + "/" + id_cliente, selectedClient)
                 .then(function(response) {
                     console.log(response);
                     $.growl.notice({ message: "Escola Cadastrada Com sucesso!" });
@@ -125,7 +119,7 @@ $(document).ready(function() {
 
 
             $("#cadastrar_escola_cliente").modal('hide');
-            return false;
+
         }
 
     });
@@ -210,7 +204,7 @@ $(document).ready(function() {
         console.log(response);
 
         axios
-            .get(url + "clientes" + "/" + id_url)
+            .get(url + "clientes" + "/" + id_cliente)
             .then(function(response) {
                 console.log(response.data.escolas);
                 if (response.data.escolas.length > 0) {
@@ -237,5 +231,55 @@ $(document).ready(function() {
 
     }
 
+    //*******************************************//
+    //Requisição HTTP Axios - UPDATE
+    //*******************************************//
 
+    $("#btn_atualizar_esc").click(function() {
+        let cod_esc = $("#cod_escola").val();
+        let id = $('#esc_id').val();
+        let razao = $("#razao_social_esc").val();
+        let nome = $("#nome_fantasia_esc").val();
+
+
+        let selectedClient = {
+            'id': id,
+            'codigo_escola': cod_esc,
+            'razao_social': razao,
+            'nome_fantasia': nome,
+            'cliente': { id: 388 }
+
+        }
+
+        axios
+            .put(url + "escola", selectedClient)
+            .then(function(response) {
+                $.growl.notice({ message: "Cliente Alterado Com sucesso!" });
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+                $.growl.warning({ message: "erro Ao Atualizar Cliente, por favor verifique seus dados" });
+            });
+
+
+    });
+
+    var url_atual = window.location.href;
+    console.log(url_atual);
+    id_url = url_atual.substring(35, 30);
+    console.log("a url em que estou é a " + id_url)
+
+    axios
+        .get(url + "escolas" + "/" + id_url)
+        .then(function(response) {
+            console.log(response);
+            $("#esc_id").val(response.data.id);
+            $("#cod_escola").val(response.data.codigo_escola);
+            $("#razao_social_esc").val(response.data.razao_social);
+            $("#nome_fantasia_esc").val(response.data.nome_fantasia);
+        }).
+    catch(function(error) {
+        console.log(error);
+    });
 });

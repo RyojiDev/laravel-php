@@ -59,34 +59,24 @@ function verificarCnpj(verificar_cnpj) {
 // }
 
 function validar_escolas() {
+    if ($("#cod_escola").val() != "") {
 
-    if (cod_escola == "") {
-        return false;
-    } else {
         return true;
-    }
-    if (razao_social_esc == "") {
-        return false;
-    } else {
-        return true;
-    }
-    if (nome_fantasia_esc == "") {
-        return false;
-    } else {
-        return true;
-    }
-    if (cod_escola.length >= 1 && nome_fantasia_esc.length >= 3 && razao_social_esc.length >= 3) {
-        return true;
+    } else if ($("#nome_fantasia_esc").val() != "") {
 
+        return true;
+    } else if ($("#razao_social_esc").val() != "") {
+        return true;
     } else {
         return false;
     }
+
 
 }
 
-let cod_escola = $("#cod_escola").val();
-let razao_social_esc = $("#razao_social_esc").val();
-let nome_fantasia_esc = $("#nome_fantasia_esc").val();
+// let cod_escola = $("#cod_escola").val();
+// let razao_social_esc = $("#razao_social_esc").val();
+// let nome_fantasia_esc = $("#nome_fantasia_esc").val();
 
 
 
@@ -152,8 +142,39 @@ $(document).ready(function() {
 
     // mascara de data
 
+    $("#nomeFantasia").mask("#", {
+        maxlength: false,
+        translation: {
+            '#': { pattern: /[A-z a-y]/, recursive: true }
+        }
+    });
+
+    $("#razaoSocial").mask("#", {
+        maxlength: false,
+        translation: {
+            '#': { pattern: /[A-z a-y]/, recursive: true }
+        }
+    });
+
+
+
+
     $("#dataLimite").mask("99/99/9999");
 
     $("#cod_escola").mask("0000");
+
+    $("#nome_fantasia_esc").mask("#", {
+        maxlength: false,
+        translation: {
+            '#': { pattern: /[A-z a-y]/, recursive: true }
+        }
+    });
+
+    $("#razao_social_esc").mask("#", {
+        maxlength: false,
+        translation: {
+            '#': { pattern: /[A-z a-y]/, recursive: true }
+        }
+    });
 
 });

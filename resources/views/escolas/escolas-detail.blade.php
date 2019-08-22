@@ -14,6 +14,10 @@
 
                         <div class="form-header">
                             <h5></h5>
+                            <input type="hidden" name="id" class="form-control" id="cliente_id" value="{{$uri_clientes}}">
+
+                            <input type="hidden" name="id" class="form-control" id="esc_id" value="{{$uri_escolas}}">
+
 
                             <div class="form-group">
                                     <label for="codEscola">Cód Escola
@@ -50,7 +54,7 @@
                                     <button id="btn_salvar_cadastro_escola" type="button" class="btn btn-primary">
                                         <span>Salvar</span>
                                     </button>
-                                    <button id="atualizar" type="button" class="btn btn-primary">
+                                    <button id="btn_atualizar_esc" type="button" class="btn btn-primary">
                                         <span>Atualizar</span></button></div>
                             </div>
                         </div>
