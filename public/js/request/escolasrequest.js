@@ -2,13 +2,11 @@ $(document).ready(function() {
 
     const url = 'http://172.16.0.198:8080/gestor_api/';
 
-    var url_atual = window.location.href;
-    console.log(url_atual);
-    id_url = url_atual.substring(35, 31);
-    console.log(`estamos na url ${id_url}`);
+    // var url_atual = window.location.href;
+
 
     var id_cliente = $("#cliente_id").val()
-
+    var id_escola = $("#esc_id").val()
 
 
     axios
@@ -31,33 +29,21 @@ $(document).ready(function() {
 
             }
 
+            objeto = response.data;
+
 
 
 
             $.each(response.data.escolas, function(key, value) {
 
+                //console.log(value, key)
                 $("#tabela_escolas_body").append("<tr id='" + value['id'] + "'>" +
-                    "<td data-name='cod_esc'><a href='/escolas/" + value['id'] + "'>" + value['codigo_escola'] + "</a></td>" +
-                    "<td data-name='razao_social'><a href='/escolas/" + value['id'] + "'>" + value['razao_social'] + "</a></td>" +
-                    "<td data-name='nome_fantasia'><a href='/escolas/" + value['id'] + "'>" + value['nome_fantasia'] + "</a></td>" +
+                    "<td data-name='cod_esc'><a href='/escolas/" + value['id'] + "/" + response.data.id + "'>" + value['codigo_escola'] + "</a></td>" +
+                    "<td data-name='razao_social'><a href='/escolas/" + value['id'] + "/" + response.data.id + "'>" + value['razao_social'] + "</a></td>" +
+                    "<td data-name='nome_fantasia'><a href='/escolas/" + value['id'] + "/" + response.data.id + "'>" + value['nome_fantasia'] + "</a></td>" +
                     "<td><button class='btn btn-danger deletar_escolas'  data-id='" + value['id'] + "'>" + "<i class='far fa-trash-alt' >" + "</i></button></td>" +
                     "</tr>");
             });
-
-
-
-
-
-
-
-            // response.data.forEach(cliente => {
-            //     linha = montarLinha(cliente)
-            //     $("#tabela_escolas").append(linha)
-
-
-            // });
-
-            //$("#dataLimite").val(response.data.data_limite);
 
 
         })
@@ -77,9 +63,7 @@ $(document).ready(function() {
         $("#cadastrar_escola_cliente").modal('show');
     });
 
-    console.log(url_atual);
-    id_url = url_atual.substring(35, 31);
-    console.log(id_url);
+
 
 
 
@@ -182,23 +166,19 @@ $(document).ready(function() {
 
     //------------------------------------listar - update -----------------------//
 
-    // var url_atual = window.location.href;
-    // console.log(url_atual);
-    // id_url = url_atual.substring(34, 30);
-    // console.log(`a url atual é ${id_url}`)
 
 
-    // axios
-    //     .get(url + "escolas" + "/" + id_url)
-    //     .then(function(response) {
-    //         console.log(response);
-    //         $("#cod_escola").val(response.data.codigo_escola);
-    //         $("#razao_social_esc").val(response.data.razao_social);
-    //         $("#nome_fantasia_esc").val(response.data.nome_fantasia);
-    //     })
-    //     .catch(function(error) {
-    //         console.log(error);
-    //     });
+    axios
+        .get(url + "escolas" + "/" + id_escola)
+        .then(function(response) {
+            console.log(response);
+            $("#cod_escola").val(response.data.codigo_escola);
+            $("#razao_social_esc").val(response.data.razao_social);
+            $("#nome_fantasia_esc").val(response.data.nome_fantasia);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
 
     function listar_escolas(response) {
         console.log(response);
@@ -213,14 +193,14 @@ $(document).ready(function() {
                     $.each(response.data.escolas, function(key, value) {
 
                         var linha = $("#tabela_escolas_body").append("<tr id='" + value['id'] + "'>" +
-                            "<td data-name='cod_esc'><a href='/escolas/" + value['id'] + "'>" + value['codigo_escola'] + "</a></td>" +
-                            "<td data-name='razao_social'><a href='/escolas/" + value['id'] + "'>" + value['razao_social'] + "</a></td>" +
-                            "<td data-name='nome_fantasia'><a href='/escolas/" + value['id'] + "'>" + value['nome_fantasia'] + "</a></td>" +
+                            "<td data-name='cod_esc'><a href='/escolas/" + value['id'] + "/" + response.data.id + "'>" + value['codigo_escola'] + "</a></td>" +
+                            "<td data-name='razao_social'><a href='/escolas/" + value['id'] + "/" + response.data.id + "'>" + value['razao_social'] + "</a></td>" +
+                            "<td data-name='nome_fantasia'><a href='/escolas/" + value['id'] + "/" + response.data.id + "'>" + value['nome_fantasia'] + "</a></td>" +
                             "<td><button class='btn btn-danger deletar_escolas'  data-id='" + value['id'] + "'>" + "<i class='far fa-trash-alt' >" + "</i></button></td>" +
                             "</tr>");
                     });
                 }
-                $("#tabela_escolas_body").append(linha);
+                // $("#tabela_escolas_body").append(linha);
             })
             .catch(function(error) {
 
@@ -236,6 +216,7 @@ $(document).ready(function() {
     //*******************************************//
 
     $("#btn_atualizar_esc").click(function() {
+
         let cod_esc = $("#cod_escola").val();
         let id = $('#esc_id').val();
         let razao = $("#razao_social_esc").val();
@@ -247,7 +228,7 @@ $(document).ready(function() {
             'codigo_escola': cod_esc,
             'razao_social': razao,
             'nome_fantasia': nome,
-            'cliente': { id: 388 }
+            'cliente': { id: id_cliente }
 
         }
 
@@ -265,21 +246,7 @@ $(document).ready(function() {
 
     });
 
-    var url_atual = window.location.href;
-    console.log(url_atual);
-    id_url = url_atual.substring(35, 30);
-    console.log("a url em que estou é a " + id_url)
+    // var url_atual = window.location.href;
 
-    axios
-        .get(url + "escolas" + "/" + id_url)
-        .then(function(response) {
-            console.log(response);
-            $("#esc_id").val(response.data.id);
-            $("#cod_escola").val(response.data.codigo_escola);
-            $("#razao_social_esc").val(response.data.razao_social);
-            $("#nome_fantasia_esc").val(response.data.nome_fantasia);
-        }).
-    catch(function(error) {
-        console.log(error);
-    });
+
 });

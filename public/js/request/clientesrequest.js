@@ -3,13 +3,6 @@ $(document).ready(function() {
 
     var el = $('body');
     console.log(el);
-    // var novadata = new Date()
-
-    // var dia = novadata.getDate();
-    // var mes = novadata.getMonth();
-    // var ano = novadata.getFullYear();
-    // novadata = +dia + '/' + (mes++) + '/' + ano;
-
 
 
     $.ajaxSetup({
@@ -22,10 +15,7 @@ $(document).ready(function() {
     //const url = 'http://localhost:8080/';
 
     // var url_atual = window.location.href;
-    // console.log(url_atual);
-    // url_clientes = url_atual.substring(32, 21);
 
-    // const url_atual_clientes = '/clientes';
 
     var id_cliente = $("#cliente_id").val()
 
@@ -288,13 +278,7 @@ $(document).ready(function() {
 
 
 
-    // var url_atual = window.location.href;
-    // console.log(url_atual);
-    // id_url = url_atual.substring(35, 31);
-    // console.log(id_url);
 
-
-    console.log(id_cliente);
     axios
         .get(url + "clientes" + "/" + id_cliente)
         .then(function(response) {
